@@ -3,7 +3,7 @@ services:
     name: habitusapp
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn nome_do_projeto.wsgi:application"
+    startCommand: "gunicorn devadmin.wsgi:application"
     envVars:
       - key: DEBUG
         value: "False"
