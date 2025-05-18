@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>FEED</title>
+    <link rel="icon" href="/static/imagens-site/logo-h-pequena.png">
+    <link rel="stylesheet" href="{% static 'css/aluno/feed.css' %}">
+    <script src="{% static 'js/aluno.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-h">
+          <a href="{% url 'feed' %}"><img src="{% static 'imagens-site/logo-h.png' %}" alt="Logo Habitus"></a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+          <img id="menu-icon" src="{% static 'imagens-site/menu-lateral.png' %}" alt="Abrir Menu">
+        </div>
+    </header>
+      
+      <!-- Menu lateral -->
+      <nav id="menu-lateral" class="menu-lateral">
+        <div>
+            <h1>Menu</h1>
+            <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+        </div>
+        <ul>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Últimas notícias</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/historico.png' %}" alt="Abrir Histórico">Histórico</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/unidade.png' %}" alt="Abrir Minhas Unidade">Minha unidade</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/reportar.png' %}" alt="Abrir Reportar Erro">Reportar erro</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/configuracoes.png' %}" alt="Abrir Configurações">Configurações</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/avaliar.png' %}" alt="Abrir Avaliar">Avaliar</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/desenvolvedores.png' %}" alt="Abrir Desenvolvedores">Desenvolvedores</a></li>
+          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/sobre.png' %}" alt="Abrir Sobre o Habitus">Sobre o Habitus</a></li>
+        </ul>
+      </nav>
+      
+    <section class="nome-pagina">
+        <h1>FEED</h1>
+    </section>
+    <section class="treino-dia">
+        <h2>Bem-vindo, Aluno!</h2>
+        <div>
+            <h1>Segunda-Feira</h1>
+            <div>
+
+            </div>
+
+        </div>
+    </section>
+    <menu>
+        <div>
+            <a href="{% url 'feed' %}">
+                <img src="{% static 'imagens-site/feed-icon-verde.png' %}" alt="Logo feed">
+                <h3>Feed</h3>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'treinos' %}">
+                <img src="{% static 'imagens-site/treino-icon-preta.png' %}" alt="icone treino">
+                <h3>Treinos</h3>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'perfil' %}">
+                <img src="{% static 'imagens-site/perfil-icon-preta.png' %}" alt="Logo perfil">
+                <h3>Perfil</h3>
+            </a>
+        </div>
+    </menu>
+</body>
+</html>

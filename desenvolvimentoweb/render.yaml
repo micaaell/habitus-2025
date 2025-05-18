@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: habitusapp
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn nome_do_projeto.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
