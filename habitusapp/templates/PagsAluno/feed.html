@@ -21,19 +21,25 @@
       
       <!-- Menu lateral -->
       <nav id="menu-lateral" class="menu-lateral">
-        <div>
+        <div class="fechar">
             <h1>Menu</h1>
             <button class="fechar-menu" onclick="toggleMenu()">✕</button>
         </div>
         <ul>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Últimas notícias</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/historico.png' %}" alt="Abrir Histórico">Histórico</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/unidade.png' %}" alt="Abrir Minhas Unidade">Minha unidade</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/reportar.png' %}" alt="Abrir Reportar Erro">Reportar erro</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/configuracoes.png' %}" alt="Abrir Configurações">Configurações</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/avaliar.png' %}" alt="Abrir Avaliar">Avaliar</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/desenvolvedores.png' %}" alt="Abrir Desenvolvedores">Desenvolvedores</a></li>
-          <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/sobre.png' %}" alt="Abrir Sobre o Habitus">Sobre o Habitus</a></li>
+            <div>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Últimas notícias</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/historico.png' %}" alt="Abrir Histórico">Histórico</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/unidade.png' %}" alt="Abrir Minhas Unidade">Minha unidade</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/reportar.png' %}" alt="Abrir Reportar Erro">Reportar erro</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/configuracoes.png' %}" alt="Abrir Configurações">Configurações</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/avaliar.png' %}" alt="Abrir Avaliar">Avaliar</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/desenvolvedores.png' %}" alt="Abrir Desenvolvedores">Desenvolvedores</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'imagens-site/sobre.png' %}" alt="Abrir Sobre o Habitus">Sobre o Habitus</a></li>
+            </div>
         </ul>
       </nav>
       
