@@ -99,10 +99,11 @@ menu div a {
     color: white;
 }
 .fechar{
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 30px;
+    gap: 10em;
 
 }
 .menu-lateral ul>div{
@@ -135,7 +136,7 @@ ul > div:nth-of-type(-n+2) {
     border: none;
     font-size: 2em;
     color: white;
-    position: absolute;
+    /*position: absolute;*/
     right: 1em;
     cursor: pointer;
 }
