@@ -74,9 +74,11 @@ menu{
     right: 0;
 }
 menu img{
-    width: 100px;
     margin-bottom: 5px;
     cursor: pointer;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 menu div a {
     font-size: 25px;
@@ -156,9 +158,3 @@ ul > div:nth-of-type(-n+2) {
     color: white;
     font-size: 1.2em;
 }
-
-
-
-
-
-
