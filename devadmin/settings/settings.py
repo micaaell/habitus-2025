@@ -70,6 +70,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'devadmin.wsgi.application'
+ASGI_APPLICATION = 'devadmin.asgi.application'
+
 
 
 # Database
