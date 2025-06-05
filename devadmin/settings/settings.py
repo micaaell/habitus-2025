@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1
 DEBUG = False
 
 # Domínios permitidos
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['habitus-2025.onrender.com', 'localhost', '127.0.0.1,','habitus-kappa.vercel.app']
+
 
 # Aplicativos instalados
 INSTALLED_APPS = [
