@@ -1,14 +1,12 @@
 {
   "builds": [
     {
-      "src": "devadmin/asgi.py",
+      "src": "devadmin/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "devadmin/asgi.py"
-    }
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "devadmin/wsgi.py" }
   ]
 }
