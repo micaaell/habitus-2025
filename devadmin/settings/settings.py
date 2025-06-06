@@ -14,8 +14,8 @@ STATICFILES_DIRS = [
 ]
 
 # Pasta onde serão coletados os arquivos estáticos para produção
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Caminho da URL para arquivos estáticos
 STATIC_URL = 'static/'
