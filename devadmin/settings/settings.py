@@ -26,14 +26,9 @@ SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1
 DEBUG = False
 
 # Domínios permitidos
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'habitus-2025.onrender.com',
-    'habitus-cnat.vercel.app',
-    'habitus-git-main-micael-ferreira-dantas-projects.vercel.app',
-    'habitus-micael-ferreira-dantas-projects.vercel.app'
-]
+#ALLOWED_HOSTS = ['localhost','127.0.0.1','habitus-2025.onrender.com','habitus-cnat.vercel.app',]
+ALLOWED_HOSTS = ['*']
+
 
 CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-cnat.vercel.app']
 
