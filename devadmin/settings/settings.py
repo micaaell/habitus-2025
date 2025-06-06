@@ -29,9 +29,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'habitus-2025.onrender.com',
+    #'habitus-2025.onrender.com',
     'habitus-cnat.vercel.app',
-    '.vercel.app'  # permite subdomínios do Vercel
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-cnat.vercel.app']
