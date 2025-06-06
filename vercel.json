@@ -1,12 +1,12 @@
 {
   "builds": [
     {
-      "src": "devadmin/wsgi.py",
+      "src": "api/index.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/(.*)", "dest": "devadmin/wsgi.py" }
+    { "src": "/(.*)", "dest": "api/index.py" }
   ]
 }
