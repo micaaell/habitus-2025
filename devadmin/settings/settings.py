@@ -10,12 +10,12 @@ import dj_database_url
 # Diretório base do projeto
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'habitusapp/static'),  # indica onde estão os arquivos originais
+    os.path.join(BASE_DIR, '/static'),  # indica onde estão os arquivos originais
 ]
 
 # Pasta onde serão coletados os arquivos estáticos para produção
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Caminho da URL para arquivos estáticos
 STATIC_URL = 'static/'
