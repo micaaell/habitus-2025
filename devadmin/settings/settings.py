@@ -23,10 +23,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1'
 
 # ATENÇÃO: Em produção, deixe DEBUG = False
-DEBUG = True
+DEBUG = False
 
 # Domínios permitidos
-ALLOWED_HOSTS = ['habitus-2025.onrender.com', 'localhost', '127.0.0.1','habitus-cnat.vercel.app']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'habitus-2025.onrender.com',
+    'habitus-cnat.vercel.app',
+    '.vercel.app'  # permite subdomínios do Vercel
+]
+
 CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-cnat.vercel.app']
 
 
