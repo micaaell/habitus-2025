@@ -26,10 +26,8 @@ SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1
 DEBUG = True
 
 # Domínios permitidos
-ALLOWED_HOSTS = ['habitus-2025.onrender.com', 'localhost', '127.0.0.1','habitus-kappa.vercel.app', 'habitus-jcgex0geb-micael-ferreira-dantas-projects.vercel.app',
-    'habitus-byc9g9dey-micael-ferreira-dantas-projects.vercel.app',
-    'habitus-kac9lol57-micael-ferreira-dantas-projects.vercel.app',]
-CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-kappa.vercel.app']
+ALLOWED_HOSTS = ['habitus-2025.onrender.com', 'localhost', '127.0.0.1','habitus-cnat.vercel.app']
+CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-cnat.vercel.app']
 
 
 # Aplicativos instalados
