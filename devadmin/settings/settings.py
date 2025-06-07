@@ -13,10 +13,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Pasta onde serão coletados os arquivos estáticos para produção
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Caminho da URL para arquivos estáticos
-#STATIC_URL = 'static/'
 STATIC_URL = '/static/'
 
 # Armazenamento de arquivos estáticos com WhiteNoise
