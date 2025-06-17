@@ -7,8 +7,8 @@ function toggleMenu() {
     menu.classList.toggle("ativo");
 
     if (menu.classList.contains("ativo")) {
-        icon.src = "/static/imagens-site/menu-lateral.png"; // ícone "X"
+        icon.src = "/static/icones-site/menu-lateral.png"; // ícone "X"
     } else {
-        icon.src = "/static/imagens-site/menu-lateral.png"; // ícone menu
+        icon.src = "/static/icones-site/menu-lateral.png"; // ícone menu
     }
 }

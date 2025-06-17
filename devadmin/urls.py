@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from habitusapp.views.viewsAluno import *
+from habitusapp.views.viewsUsuario import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', feed, name='feed'),
+    path('', login, name='login'),
+    path('feed/', feed, name='feed'),
     path('treinos/', treinos, name='treinos'),
     path('perfil/', perfil, name='perfil'),
 ]

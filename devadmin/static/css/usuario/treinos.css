@@ -5,16 +5,16 @@
     font-family: 'Lexend Deca', sans-serif;
 }
 body {
-    margin-top: 145px;
+    margin-top: 109px;
     background-color: #070A22;
 }
 
-header{
+header {
     background-color: #070A22;
-    padding: 3em;
+    padding: 2em;
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
@@ -32,30 +32,93 @@ header{
     right: 20px;
   }
 header img{
-    width: 80px;
+    width: 50px;
+    height: 40px;
     cursor: pointer;
 }
 
-section.nome-pagina{
+section.nome-pagina {
     background-color: #C5F022;
     text-align: center;
-    font-size: 30px;
-    padding: 1em;
+    display: flex;
+    height: 61px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+h3{
+    font-size: 10px;
+    color: #FFF;
+    font-weight: 700;
+    line-height: normal;
+    font-style: normal;
+}
+h1{
+    font-size: 20px;
+    margin:0;
+}
+main{
+    padding-bottom: 100px;
 }
 .treino-dia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    border-radius: 10px;
+    background: #1E1C37;
+    flex-shrink: 0;
+    height: 103px;
+    margin-bottom: 13px;
+}
+.container{
     margin-top: 2em;
-    text-align: center;
 }
 .treino-dia h2{
-    font-size: 30px;
+    color: #FFF;
+    font-size: 13px;
+}
+.treino-dia p{
+    color: #FFF;
+    font-size: 11px;
+    margin-bottom: 13px;
+}
+.treino-dia div a{
     color: white;
-}
-.treino-dia div{
-    padding: 100px;
+    text-decoration: none;
+    color: #3B3E52;
+    font-size: 10px;
     border-radius: 10px;
-    margin: 30px;
-    background-color: #1E1C37;
+    background: #FFF;
+    width: 84.751px;
+    flex-shrink: 0;
+    height: 20px;
+    padding: 4px 12px 4px 12px;
 }
+.treino-dia div img{
+    width: 84.751px;
+    flex-shrink: 0;
+    height: 85px;
+    display: block;
+}
+.treino-dia span a:nth-of-type(2) img {
+    width: 38.517px;
+    flex-shrink: 0;
+    height: 38.517px;
+}
+.treino-dia span a:nth-of-type(1) img {
+    width: 21px;
+    flex-shrink: 0;
+    height: 6px;
+    margin: 0;
+}
+.treino-dia span a {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
 .treino-dia h1{
     font-size: 30px;
     color: white;
@@ -76,18 +139,16 @@ menu{
 menu img{
     margin-bottom: 5px;
     cursor: pointer;
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
 }
 menu div a {
-    font-size: 25px;
     color:white ;
     text-decoration: none;
     display: grid;
     align-items: center;
 }
-
 .menu-lateral {
     position: fixed;
     top: 0;
@@ -104,14 +165,14 @@ menu div a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 30px;
-    gap: 8em;
+    font-size: 15px;
+    gap: 5em;
 
 }
 .menu-lateral ul>div{
     display: block;
     justify-content: start;
-    padding-bottom: 3em;
+    padding-bottom: 24px;
     margin-bottom: 3em;
 }
 ul > div:nth-of-type(-n+2) {
@@ -122,12 +183,12 @@ ul > div:nth-of-type(-n+2) {
     display: inline-flex;
     align-items: center;
     justify-content: start;
-    gap: 30px;
-    font-size: 40px;
+    gap: 15px;
+    font-size: 15px;
 
 }
 .menu-lateral img{
-    width: 50px;
+    width: 26px;
 }
 .menu-lateral.ativo {
     right: 0;
@@ -150,7 +211,7 @@ ul > div:nth-of-type(-n+2) {
 }
 
 .menu-lateral li {
-    margin-bottom: 1.5em;
+    margin-bottom: 24px;
 }
 
 .menu-lateral a {
