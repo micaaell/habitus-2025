@@ -100,6 +100,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Internacionalização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'

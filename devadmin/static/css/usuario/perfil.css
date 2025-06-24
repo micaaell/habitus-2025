@@ -186,6 +186,8 @@ main{
     width: 122px;
     flex-shrink: 0;
     height: 122px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .container h2, p{
     font-size: 20px;
@@ -221,4 +223,26 @@ main{
 }
 span{
     margin: 0;
+}
+.sair_perfil {
+    margin-top:73px;
+    height: 40px;
+    flex-shrink: 0;
+    width: 340px;
+    border-radius: 50px;
+    background: #C5F022;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #070A22;
+    font-size: 20px;
+    font-weight:normal;
+}
+.sair_perfil img{
+    width: 26.833px;
+    flex-shrink: 0;
+    aspect-ratio: 26.83/26.83;
+    height: 26.833px;
+    margin: 0 0px 0px 8px;
 }

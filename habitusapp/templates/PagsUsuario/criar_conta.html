@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta - Habitus</title>
+    <link rel="icon" href="{% static 'icones-site/logo-h-pequena.png' %}">
+    <link rel="stylesheet" href="{% static 'css/usuario/criar_conta.css' %}">
+</head>
+<body>
+    <script>
+        function previewImagem() {
+            const input = document.getElementById('id_foto_perfil');
+            const preview = document.getElementById('preview-foto');
+            const removerBtn = document.getElementById('remover-foto-btn');
+
+            const file = input.files[0];
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                removerBtn.style.display = 'inline-block';  // Mostrar o botão
+            }
+        }
+
+        function removerFoto() {
+            const input = document.getElementById('id_foto_perfil');
+            const preview = document.getElementById('preview-foto');
+            const removerBtn = document.getElementById('remover-foto-btn');
+
+            // Limpar o input
+            input.value = '';
+
+            // Voltar a imagem padrão
+            preview.src = "{% static 'icones-site/sem-foto.png' %}";
+
+            // Esconder o botão novamente
+            removerBtn.style.display = 'none';
+        }
+    </script>
+
+    <main class="login-container">
+        <div class="login-header">
+            <img src="{% static 'icones-site/logo-nome-completo.png' %}" alt="Logo Habitus completo">
+        </div>
+
+        <div class="login-box">
+            <h1>Crie sua conta no Habitus</h1>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Imagem de preview que serve como botão -->
+                <label for="id_foto_perfil" class="input_foto">
+                    {% if request.user.aluno.foto_perfil %}
+                        <img src="{{ request.user.aluno.foto_perfil.url }}" alt="Foto de Perfil" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                    {% else %}
+                        <img id="preview-foto" src="{% static 'icones-site/sem-foto.png' %}" alt="Foto de Perfil Padrão" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+                    {% endif %}
+                </label>
+                
+
+                <!-- Input invisível (mas funcional) -->
+                <input type="file" name="foto_perfil" id="id_foto_perfil" accept="image/*" style="display: none;" onchange="previewImagem()">
+                <!-- Botão de remover (começa escondido) -->
+                <button type="button" id="remover-foto-btn" onclick="removerFoto()" style="display:none; margin-top: 10px;">Remover Foto</button>
+
+                <!-- Campo: Nome completo -->
+                <label for="id_nome">Nome:</label>
+                <input type="text" name="nome" id="id_nome" required placeholder="Insira o seu nome completo">
+                
+                <!-- Campo: CPF -->
+                <label for="id_cpf">CPF:</label>
+                <input type="text" name="cpf" id="id_cpf" required placeholder="xxx.xxx.xxx-xx">
+                
+                <!-- Campo: Data de nascimento -->
+                <label for="id_data_nasc">Data de nascimento:</label>
+                <input type="date" name="data_nasc" id="id_data_nasc" required>
+                
+                <!-- Campo: Telefone -->
+                <label for="id_telefone">Telefone:</label>
+                <input type="text" name="telefone" id="id_telefone" placeholder="(DDD) 9xxxx-xxxx">
+
+                <!-- Campo: Nome de usuário -->
+                <label for="id_username">Nome de usuário:</label>
+                <input type="text" name="username" id="id_username" required placeholder="Crie um username para sua conta">
+
+                <!-- Campo: E-mail -->
+                <label for="id_email">E-mail:</label>
+                <input type="email" name="email" id="id_email" required placeholder="email@exemplo.com">
+
+                <!-- Campo: Senha -->
+                <label for="id_password">Senha:</label>
+                <input type="password" name="password" id="id_password" required placeholder="Crie uma senha com no mínimo 8 digítos">
+                
+                <!-- Botão de envio -->
+                 <div>
+                    <a href="{% url 'login' %}">Cancelar</a>
+                    <button type="submit">Criar Conta</button>
+                 </div>
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>

@@ -219,3 +219,25 @@ ul > div:nth-of-type(-n+2) {
     color: white;
     font-size: 1.2em;
 }
+.novo_treino {
+    margin-top: 73px;
+    height: 40px;
+    flex-shrink: 0;
+    width: 340px;
+    border-radius: 50px;
+    background: #C5F022;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #070A22;
+    font-size: 15px;
+    font-weight: bold;
+}
+.novo_treino img {
+    width: 26.833px;
+    flex-shrink: 0;
+    aspect-ratio: 26.83 / 26.83;
+    height: 26.833px;
+    margin: 0 0px 0px 8px;
+}

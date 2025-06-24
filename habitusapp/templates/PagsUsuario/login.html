@@ -7,8 +7,23 @@
     <title>Login - Habitus</title>
     <link rel="icon" href="{% static 'icones-site/logo-h-pequena.png' %}">
     <link rel="stylesheet" href="{% static 'css/usuario/login.css' %}">
+    <script src="{% static 'js/usuario/menu.js' %}"></script>
 </head>
 <body>
+    <script>
+        function toggleSenha() {
+            const senhaInput = document.getElementById("senha");
+            const olhoIcone = document.getElementById("iconeSenha");
+
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                olhoIcone.src = "{% static 'icones-site/olho_aberto.png' %}";
+            } else {
+                senhaInput.type = "password";
+                olhoIcone.src = "{% static 'icones-site/olho_fechado.png' %}";
+            }
+        }
+    </script>
     <main class="login-container">
         <div class="login-header">
             <img src="{% static 'icones-site/logo-nome-completo.png' %}" alt="Logo Habitus completo">
@@ -20,20 +35,24 @@
             <form method="POST">
                 {% csrf_token %}
                 <label for="email">E-mail:</label>
-                <input type="email" id="email" placeholder="Digite seu e-mail de acesso">
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail de acesso">
 
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" placeholder="Digite sua senha">
+                <div style="position: relative;">
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                    <img id="iconeSenha" src="{% static 'icones-site/olho_fechado.png' %}" onclick="toggleSenha()" style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                </div>
+
                 <a href="#" class="recuperar-senha">Recuperar senha</a>
 
                 <button type="submit" class="btn-principal">Entrar</button>
-                <a href="{% url 'feed' %}" class="btn-secundario">Criar Conta</a>
+                <a href="{% url 'criar_conta' %}" class="btn-secundario">Criar Conta</a>
 
                 <div class="ou-linha">
                     <span>Ou</span>
                 </div>
 
-                <a href="{% url 'feed' %}" class="btn-suap">
+                <a href="{% url 'feed_aluno' %}" class="btn-suap">
                     Entrar com o <img src="{% static 'icones-site/suap-logo.png' %}" alt="Logo SUAP">
                 </a>
             </form>
