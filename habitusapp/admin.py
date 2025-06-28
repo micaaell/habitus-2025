@@ -7,5 +7,6 @@ admin.site.register(Aluno)
 admin.site.register(Professor)
 admin.site.register(Admin)
 admin.site.register(Noticia)
+admin.site.register(TreinoExercicio)
 
 # Register your models here.
