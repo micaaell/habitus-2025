@@ -128,7 +128,7 @@ menu{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #404676;
+    background-color: #3B3E52;
     padding: 1em;
 
     position: fixed;
@@ -155,7 +155,7 @@ menu div a {
     right: -500%;
     width: 50%;
     height: 100vh;
-    background-color: #404676;
+    background-color: #3B3E52;
     transition: right 0.3s ease;
     z-index: 999;
     padding: 2em;
@@ -240,4 +240,8 @@ ul > div:nth-of-type(-n+2) {
     aspect-ratio: 26.83 / 26.83;
     height: 26.833px;
     margin: 0 0px 0px 8px;
+}
+
+.seta-voltar {
+    margin-left: 0;
 }

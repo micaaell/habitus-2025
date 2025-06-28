@@ -62,7 +62,7 @@ menu{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #404676;
+    background-color: #3B3E52;
     padding: 1em;
 
     position: fixed;
@@ -90,7 +90,7 @@ menu div a {
     right: -500%;
     width: 50%;
     height: 100vh;
-    background-color: #404676;
+    background-color: #3B3E52;
     transition: right 0.3s ease;
     z-index: 999;
     padding: 2em;
@@ -188,4 +188,8 @@ p img{
 }
 .dados-fisicos {
     margin-top: 20px;
+}
+
+.seta-voltar {
+    margin-left: 0;
 }

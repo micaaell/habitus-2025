@@ -31,23 +31,17 @@ urlpatterns = [
     #Páginas Usuário
     path('', login, name='login'),
     path('criar_conta/', criar_conta, name='criar_conta'),
-    path('feed_aluno/', viewsUsuario.feed_aluno, name='feed_aluno'),
-    path('treinos_aluno/', viewsUsuario.treinos_aluno, name='treinos_aluno'),
-    path('perfil_aluno/', viewsUsuario.perfil_aluno, name='perfil_aluno'),
-    path('perfil_aluno/editar-foto', viewsUsuario.editar_foto_aluno, name='editar_foto_aluno'),
+    path('feed/', viewsUsuario.feed, name='feed'),
+    path('treinos/', viewsUsuario.treinos, name='treinos'),
+    path('perfil/', viewsUsuario.perfil, name='perfil'),
+    path('perfil/editar-foto', viewsUsuario.editar_foto, name='editar_foto'),
     path('meus_dados/', viewsUsuario.meus_dados, name='meus_dados'),
+    path('novo_treino/', viewsUsuario.novo_treino, name='novo_treino'),
 
     #Páginas Professor
-    path('feed_professor/', viewsProfessor.feed_professor, name='feed_professor'),
-    path('treinos_professor/', viewsProfessor.treinos_professor, name='treinos_professor'),
-    path('perfil_professor/', viewsProfessor.perfil_professor, name='perfil_professor'),
-    path('perfil_professor/editar-foto', viewsProfessor.editar_foto_professor, name='editar_foto_professor'),
+    path('gerenciar_noticias/', viewsProfessor.gerenciar_noticias, name='gerenciar_noticias'),
+    path('publicar_noticia/', viewsProfessor.publicar_noticia, name='publicar_noticia'),
 
     #Páginas Admin
-    path('feed_admin/', viewsAdmin.feed_admin, name='feed_admin'),
-    path('treinos_admin/', viewsAdmin.treinos_admin, name='treinos_admin'),
-    path('perfil_admin/', viewsAdmin.perfil_admin, name='perfil_admin'),
-    path('perfil_admin/editar-foto', viewsAdmin.editar_foto_admin, name='editar_foto_admin'),
-    path('gerenciar_noticias/', viewsAdmin.gerenciar_noticias, name='gerenciar_noticias'),
-    path('publicar_noticia/', viewsAdmin.publicar_noticia, name='publicar_noticia'),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
