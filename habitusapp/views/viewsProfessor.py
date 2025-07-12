@@ -8,37 +8,56 @@ from habitusapp.models import Professor
 from django.conf import settings
 import os
 
-@login_required
-def feed_professor(request):
-    return render(request, 'PagsProfessor/feed.html')
-    
-@login_required
-def treinos_professor(request):
-    return render(request, 'PagsProfessor/treinos.html')
+from django.shortcuts import render, redirect
+from habitusapp.forms import AlunoForm
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.models import User, Group
+from django.contrib.auth.decorators import login_required
+from habitusapp.models import Admin
+from django.conf import settings
+from habitusapp.models import Noticia, Admin, Professor
+from habitusapp.forms import NoticiaForm
 
 @login_required
-def perfil_professor(request):
+def gerenciar_noticias(request):
+    noticias = Noticia.objects.all().order_by('-data_publicacao')
+    nome = None
+    return render(request, 'PagsProfessor/gerenciar_noticias.html', {
+        'noticias': noticias,
+        'nome_usuario': nome
+    })
+
+@login_required
+def publicar_noticia(request):
+    nome_autor = ""
+    tipo_autor = ""
+    autor_user = request.user
+
     try:
-        professor = Professor.objects.get(user=request.user)
-    except Professor.DoesNotExist:
-        professor = None  # Ou você pode fazer um redirect
+        admin = Admin.objects.get(user=request.user)
+        nome_autor = admin.nome
+        tipo_autor = admin.tipo_trabalho
+    except Admin.DoesNotExist:
+        try:
+            professor = Professor.objects.get(user=request.user)
+            nome_autor = professor.nome
+            tipo_autor = professor.tipo_trabalho
+        except Professor.DoesNotExist:
+            return redirect('erro_permissao')  # Opcional: criar uma página de erro caso o usuário não seja admin ou professor
 
-    return render(request, 'PagsProfessor/perfil.html', {'professor': professor})
+    if request.method == 'POST':
+        form = NoticiaForm(request.POST, request.FILES)
+        if form.is_valid():
+            noticia = form.save(commit=False)
+            noticia.autor_user = autor_user
+            noticia.autor_nome = nome_autor
+            noticia.autor_tipo = tipo_autor
+            noticia.save()
+            return redirect('feed')  # Ou outro feed que desejar
+    else:
+        form = NoticiaForm()
 
-@login_required
-def editar_foto_professor(request):
-    professor = Professor.objects.get(user=request.user)
-
-    if request.method == 'POST' and 'nova_foto' in request.FILES:
-        # Se já existir uma foto, apaga a antiga antes de salvar a nova
-        if professor.foto_perfil and os.path.isfile(professor.foto_perfil.path):
-            os.remove(professor.foto_perfil.path)
-
-        # Salva a nova foto
-        professor.foto_perfil = request.FILES['nova_foto']
-        professor.save()
-
-        return redirect('perfil_professor')  # Redireciona de volta ao perfil
-
-    return render(request, 'PagsProfessor/perfil.html', {'professor': professor})
+    return render(request, 'PagsProfessor/publicar_noticia.html', {'form': form})
 

@@ -4,9 +4,7 @@ from django.contrib.auth.models import User
 
 class Admin(models.Model):
     class Tipo_Trabalho(models.TextChoices):
-        ESTAGIO = 'Estágiario(a)', 'Estágiario(a)'
-        EFETIVO = 'Professor(a)', 'Professor(a)'
-        ADM = 'Administrador(a)', 'Administrador(a)'
+        ADMIN = 'Administrador(a)', 'Administrador(a)'
     class NivelChoices(models.TextChoices):
         INICIANTE = 'Iniciante', 'Iniciante'
         INTERMEDIARIO = 'Intermediário', 'Intermediário'
@@ -29,7 +27,7 @@ class Admin(models.Model):
     tipo_trabalho = models.CharField(
         max_length=20,
         choices=Tipo_Trabalho.choices,
-        blank=True, null=True
+        default=Tipo_Trabalho.ADMIN
     )
 
     peso = models.FloatField(blank=True, null=True)

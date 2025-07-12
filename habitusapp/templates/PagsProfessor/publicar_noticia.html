@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar notícia</title>
+    <link rel="icon" href ="{% static 'icones-site/logo-h-pequena.png' %}">
+    <link rel="stylesheet" href="{% static 'css/professor/publicar_noticia.css' %}">
+    <script src="{% static 'js/usuario/menu.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="seta-voltar">
+            <a href="javascript:history.back()">
+                <img src="{% static 'icones-site/seta-voltar.png' %}" alt="Ícone seta voltar">
+            </a>
+        </div>
+        <div class="logo-h">
+          <a href="{% url 'feed' %}"><img src="{% static 'icones-site/logo-h.png' %}" alt="Logo Habitus"></a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+          <img id="menu-icon" src="{% static 'icones-site/menu-lateral.png' %}" alt="Abrir Menu">
+        </div>
+    </header>
+      
+      <!-- Menu lateral -->
+    <nav id="menu-lateral" class="menu-lateral">
+        <div class="fechar">
+            <h1>Menu</h1>
+            <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+        </div>
+        <ul>
+            <div>
+                <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Notícias</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/professores.png' %}" alt="Abrir Minhas Unidade">Professores</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="Abrir Histórico">Histórico</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="Abrir Reportar Erro">Reportar erro</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="Abrir Configurações">Configurações</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="Abrir Avaliar">Avaliar</a></li>
+            </div>
+            <div>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="Abrir Desenvolvedores">Desenvolvedores</a></li>
+                <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="Abrir Sobre o Habitus">Sobre o Habitus</a></li>
+            </div>
+        </ul>
+    </nav>
+    <main>
+    <section class="nome-pagina">
+        <h1>Publicar notícia</h1>
+    </section>
+        <section class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <!-- Botão de envio -->
+                 <div>
+                    <a href="javascript:history.back()">Cancelar</a>
+                    <button type="submit">Publicar</button>
+                 </div>
+            </form>
+        </section>
+
+    <menu>
+        <div>
+            <a href="{% url 'feed' %}">
+                <img src="{% static 'icones-site/feed-icon-preta.png' %}" alt="Logo feed">
+                <h3>feed</h3>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'treinos' %}">
+                <img src="{% static 'icones-site/treino-icon-preta.png' %}" alt="icone treino">
+                <h3>Treinos</h3>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'perfil' %}">
+                <img src="{% static 'icones-site/perfil-icon-preta.png' %}" alt="Logo perfil">
+                <h3>Perfil</h3>
+            </a>
+        </div>
+    </main> 
+    
+    </menu>
+</body>
+</html>

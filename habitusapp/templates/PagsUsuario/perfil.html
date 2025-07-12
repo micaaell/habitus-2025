@@ -39,37 +39,97 @@
         }
     </script>
     <header>
+        <div class="seta-voltar">
+            <a href="javascript:history.back()">
+                <img src="{% static 'icones-site/seta-voltar.png' %}" alt="Ícone seta voltar">
+            </a>
+        </div>
         <div class="logo-h">
-          <a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/logo-h.png' %}" alt="Logo Habitus"></a>
+          <a href="{% url 'feed' %}"><img src="{% static 'icones-site/logo-h.png' %}" alt="Logo Habitus"></a>
         </div>
         <div class="menu-icon" onclick="toggleMenu()">
           <img id="menu-icon" src="{% static 'icones-site/menu-lateral.png' %}" alt="Abrir Menu">
         </div>
     </header>
       
-      <!-- Menu lateral -->
-    <nav id="menu-lateral" class="menu-lateral">
-        <div class="fechar">
-            <h1>Menu</h1>
-            <button class="fechar-menu" onclick="toggleMenu()">✕</button>
-        </div>
-        <ul>
-            <div>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Últimas notícias</a></li>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/historico.png' %}" alt="Abrir Histórico">Histórico</a></li>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="Abrir Minhas Unidade">Minha unidade</a></li>
-            </div>
-            <div>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="Abrir Reportar Erro">Reportar erro</a></li>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="Abrir Configurações">Configurações</a></li>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="Abrir Avaliar">Avaliar</a></li>
-            </div>
-            <div>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="Abrir Desenvolvedores">Desenvolvedores</a></li>
-                <li><a href="{% url 'feed_aluno' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="Abrir Sobre o Habitus">Sobre o Habitus</a></li>
-            </div>
-        </ul>
-    </nav>
+    {% if user.is_authenticated %}
+        {% if user.groups.first.name == "Aluno" %}
+            <!-- MENU PARA ALUNO -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'meus_dados' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Dados pessoais</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+
+        {% elif user.groups.first.name == "Professor" %}
+            <!-- MENU PARA PROFESSOR -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Noticias">Notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+
+        {% elif user.groups.first.name == "Admin" %}
+            <!-- MENU PARA ADMIN -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/professores.png' %}" alt="Professores">Professores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/exercicios.png' %}" alt="Exercícios">Exercícios</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+        {% endif %}
+    {% endif %}
     <main>
     <section class="nome-pagina">
         <h1>Perfil</h1>
@@ -78,18 +138,18 @@
             <div class="editar-foto">
                 <!-- Ao clicar na foto, abre o input de upload -->
                 <a href="#" onclick="document.getElementById('id_nova_foto').click(); return false;">
-                    {% if aluno.foto_perfil %}
-                        <img id="preview-foto" src="{{ aluno.foto_perfil.url }}" alt="Foto de Perfil">
+                    {% if perfil.foto_perfil %}
+                        <img id="preview-foto" src="{{ perfil.foto_perfil.url }}" alt="Foto de Perfil">
                     {% else %}
                         <img id="preview-foto" src="{% static 'icones-site/sem-foto.png' %}" alt="Foto de Perfil Padrão">
                     {% endif %}
                 </a>
 
-                <h2>{{ aluno.nome }}</h2>
-                <p>{{ aluno.matricula }}</p>
+                <h2>{{ perfil.nome }}</h2>
+                <p>{{ perfil.matricula }}</p>
 
                 <!-- Input oculto para escolher nova foto -->
-                <form method="POST" enctype="multipart/form-data" action="{% url 'editar_foto_aluno' %}">
+                <form method="POST" enctype="multipart/form-data" action="{% url 'editar_foto' %}">
                     {% csrf_token %}
                     <input type="file" name="nova_foto" id="id_nova_foto" accept="image/*" style="display:none;" onchange="previewNovaFoto()">
 
@@ -98,6 +158,7 @@
                     <button type="button" id="remover-foto-btn" onclick="removerNovaFoto()" style="display:none; margin-top: 10px;">Remover foto selecionada</button>
                 </form>
             </div>
+
             <div class="acoes-perfil">
                 <a href="{% url 'meus_dados' %}">
                     <img src="{% static 'icones-site/dados-icone.png' %}" alt="Icone dados">
@@ -117,19 +178,19 @@
 
     <menu>
         <div>
-            <a href="{% url 'feed_aluno' %}">
-                <img src="{% static 'icones-site/feed-icon-preta.png' %}" alt="Logo feed_aluno">
+            <a href="{% url 'feed' %}">
+                <img src="{% static 'icones-site/feed-icon-preta.png' %}" alt="Logo feed">
                 <h3>feed</h3>
             </a>
         </div>
         <div>
-            <a href="{% url 'treinos_aluno' %}">
+            <a href="{% url 'treinos' %}">
                 <img src="{% static 'icones-site/treino-icon-preta.png' %}" alt="icone treino">
                 <h3>Treinos</h3>
             </a>
         </div>
         <div>
-            <a href="{% url 'perfil_aluno' %}">
+            <a href="{% url 'perfil' %}">
                 <img src="{% static 'icones-site/perfil-icon-verde.png' %}" alt="Logo perfil">
                 <h3>Perfil</h3>
             </a>

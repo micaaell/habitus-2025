@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from habitusapp.forms import AlunoForm
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User, Group
 from django.conf import settings
 import os
 from django.contrib.auth.decorators import login_required
-from habitusapp.models import Aluno
+from habitusapp.forms import NoticiaForm
+from habitusapp.models import Noticia, Aluno, Professor, Admin 
 
 def login(request):
     if request.method == 'POST':
@@ -23,25 +22,11 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-
-            # Verificar o grupo do usuário
-            grupos = user.groups.values_list('name', flat=True)
-
-            if 'Aluno' in grupos:
-                return redirect('feed_aluno')  # Exemplo: uma URL chamada feed_aluno
-            elif 'Professor' in grupos:
-                return redirect('feed_professor')  # Exemplo: uma URL chamada feed_professor
-            elif 'Admin' in grupos:
-                return redirect('feed_admin')  # Exemplo: uma URL chamada feed_admin
-            else:
-                return render(request, 'PagsUsuario/login.html', {'erro': 'Usuário sem grupo definido.'})
-
+            return redirect('feed')  # Redireciona sempre para a view 'feed' após login
         else:
             return render(request, 'PagsUsuario/login.html', {'erro': 'Senha incorreta.'})
 
     return render(request, 'PagsUsuario/login.html')
-
-
 
 def criar_conta(request):
     if request.method == 'POST':
@@ -55,45 +40,120 @@ def criar_conta(request):
     return render(request, 'PagsUsuario/criar_conta.html', {'form': form})
 
 @login_required
-def feed_aluno(request):
-    return render(request, 'PagsUsuario/feed.html')
+def feed(request):
+    noticias = Noticia.objects.all().order_by('-data_publicacao')
+    
+    nome = None
+
+    if hasattr(request.user, 'aluno'):
+        nome = request.user.aluno.nome
+    elif hasattr(request.user, 'professor'):
+        nome = request.user.professor.nome
+    elif hasattr(request.user, 'admin'):
+        nome = request.user.admin.nome
+    else:
+        nome = request.user.username  # fallback, caso não esteja em nenhum perfil
+
+    return render(request, 'PagsUsuario/feed.html', {
+        'noticias': noticias,
+        'nome_usuario': nome
+    })
+
 
 @login_required
-def treinos_aluno(request):
+def treinos(request):
     return render(request, 'PagsUsuario/treinos.html')
 
 @login_required
 def meus_dados(request):
-    aluno = Aluno.objects.get(user=request.user)
-    return render(request, 'PagsUsuario/meus_dados.html', {'aluno': aluno})
+    perfil = None
 
+    if hasattr(request.user, 'aluno'):
+        perfil = request.user.aluno
+    elif hasattr(request.user, 'professor'):
+        perfil = request.user.professor
+    elif hasattr(request.user, 'admin'):
+        perfil = request.user.admin
 
-@login_required
-def perfil_aluno(request):
-    try:
-        aluno = Aluno.objects.get(user=request.user)
-    except Aluno.DoesNotExist:
-        aluno = None  # Pode fazer um redirect ou uma mensagem de erro se quiser
-
-    return render(request, 'PagsUsuario/perfil.html', {'aluno': aluno})
-
+    return render(request, 'PagsUsuario/meus_dados.html', {'perfil': perfil})
 
 @login_required
-def editar_foto_aluno(request):
-    aluno = Aluno.objects.get(user=request.user)
+def perfil(request):
+    perfil = None
+
+    if hasattr(request.user, 'aluno'):
+        perfil = request.user.aluno
+    elif hasattr(request.user, 'professor'):
+        perfil = request.user.professor
+    elif hasattr(request.user, 'admin'):
+        perfil = request.user.admin
+
+    return render(request, 'PagsUsuario/perfil.html', {'perfil': perfil})
+
+@login_required
+def editar_foto(request):
+    perfil = None
+
+    if hasattr(request.user, 'aluno'):
+        perfil = request.user.aluno
+    elif hasattr(request.user, 'professor'):
+        perfil = request.user.professor
+    elif hasattr(request.user, 'admin'):
+        perfil = request.user.admin
 
     if request.method == 'POST' and 'nova_foto' in request.FILES:
-        # Se já existir uma foto, apaga a antiga antes de salvar a nova
-        if aluno.foto_perfil and os.path.isfile(aluno.foto_perfil.path):
-            os.remove(aluno.foto_perfil.path)
+        # Remove a foto anterior (se houver)
+        if perfil.foto_perfil and os.path.isfile(perfil.foto_perfil.path):
+            os.remove(perfil.foto_perfil.path)
 
-        # Salva a nova foto
-        aluno.foto_perfil = request.FILES['nova_foto']
-        aluno.save()
+        perfil.foto_perfil = request.FILES['nova_foto']
+        perfil.save()
 
-        return redirect('perfil_aluno')  # Redireciona de volta ao perfil
+        return redirect('perfil')
 
-    return render(request, 'PagsAluno/perfil.html', {'aluno': aluno})
+    return render(request, 'PagsUsuario/perfil.html', {'perfil': perfil})
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from habitusapp.models import Treino, TreinoExercicio, Exercicio
+from django.utils import timezone
+
+@login_required
+def novo_treino(request):
+    if request.method == 'POST':
+        nome = request.POST.get('nome')
+        data_inicio = request.POST.get('data_inicio')
+        data_fim = request.POST.get('data_fim')
+        exercicios_ids = request.POST.getlist('exercicios')  # IDs dos exercícios
+        series = request.POST.getlist('series')
+        repeticoes = request.POST.getlist('repeticoes')
+        carga = request.POST.getlist('carga')
+        observacoes = request.POST.getlist('observacoes')
+
+        treino = Treino.objects.create(
+            nome=nome,
+            data_inicio=data_inicio,
+            data_fim=data_fim,
+            quant_exercicios=len(exercicios_ids),
+            usuario=request.user
+        )
+
+        for i in range(len(exercicios_ids)):
+            TreinoExercicio.objects.create(
+                treino=treino,
+                exercicio_id=exercicios_ids[i],
+                series=series[i],
+                repeticoes=repeticoes[i],
+                carga=carga[i],
+                observacao=observacoes[i]
+            )
+
+        return redirect('treinos')
+
+    exercicios = Exercicio.objects.all()
+    return render(request, 'PagsUsuario/novo_treino.html', {'exercicios': exercicios})
+
+
 
 
 

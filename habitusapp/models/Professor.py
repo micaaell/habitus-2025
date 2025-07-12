@@ -4,9 +4,16 @@ from django.contrib.auth.models import User
 
 class Professor(models.Model):
     class Tipo_Trabalho(models.TextChoices):
-        ESTAGIO = 'Estágiario(a)', 'Estágiario(a)'
-        EFETIVO = 'Professor(a)', 'Professor(a)'
-        ADM = 'Administrador(a)', 'Administrador(a)'
+        PROFESSOR = 'Professor(a)', 'Professor(a)'
+    class NivelChoices(models.TextChoices):
+        INICIANTE = 'Iniciante', 'Iniciante'
+        INTERMEDIARIO = 'Intermediário', 'Intermediário'
+        AVANCADO = 'Avançado', 'Avançado'
+    class ObjetivoChoices(models.TextChoices):
+        GANHODEMASSA = 'Ganho de Massa', 'Ganho de Massa'
+        PERDADEPESO = 'Perda de peso', 'Perda de peso'
+        SAUDE = 'Saúde', 'Saúde'
+        OUTRO = 'Outro', 'Outro'
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     matricula = models.CharField(max_length=20, primary_key=True, editable=False, unique=True)
@@ -23,6 +30,19 @@ class Professor(models.Model):
     tipo_trabalho = models.CharField(
         max_length=20,
         choices=Tipo_Trabalho.choices,
+        default=Tipo_Trabalho.PROFESSOR
+    )
+    
+    peso = models.FloatField(blank=True, null=True)
+    altura = models.FloatField(blank=True, null=True)
+    nivel = models.CharField(
+        max_length=20,
+        choices=NivelChoices.choices,
+        blank=True, null=True
+    )
+    objetivo = models.CharField(
+        max_length=20,
+        choices=ObjetivoChoices.choices,
         blank=True, null=True
     )
 
