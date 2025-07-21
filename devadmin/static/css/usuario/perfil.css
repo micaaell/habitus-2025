@@ -31,9 +31,21 @@ header{
     position: absolute;
     right: 20px;
   }
-header img{
+.logo-h img{
     width: 50px;
-    height: 40px;
+    cursor: pointer;
+}
+.seta-voltar img{
+    width: 25px;
+}
+.seta-voltar{
+    margin-left: 0 ;
+}
+.menu-icon img{
+    width:30px;
+    cursor: pointer;
+}
+header img{
     cursor: pointer;
 }
 
@@ -128,7 +140,7 @@ menu div a {
     padding-bottom: 24px;
     margin-bottom: 3em;
 }
-ul > div:nth-of-type(-n+2) {
+ul > div:nth-of-type(-n+3) {
   border-bottom: 1px solid #D9D9D9;
 }
 
@@ -237,7 +249,7 @@ span{
     text-decoration: none;
     color: #070A22;
     font-size: 20px;
-    font-weight:normal;
+    font-weight:medium;
 }
 .sair_perfil img{
     width: 26.833px;

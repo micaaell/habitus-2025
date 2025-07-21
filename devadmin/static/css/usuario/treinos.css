@@ -26,14 +26,25 @@ header {
     left: 50%;
     transform: translateX(-50%);
   }
-  
+.logo-h img{
+    width: 50px;
+    cursor: pointer;
+}
+.seta-voltar img{
+    width: 25px;
+}
+.seta-voltar{
+    margin-left: 0 ;
+}
+.menu-icon img{
+    width:30px;
+    cursor: pointer;
+}
 .menu-icon {
     position: absolute;
     right: 20px;
   }
 header img{
-    width: 50px;
-    height: 40px;
     cursor: pointer;
 }
 
@@ -175,7 +186,7 @@ menu div a {
     padding-bottom: 24px;
     margin-bottom: 3em;
 }
-ul > div:nth-of-type(-n+2) {
+ul > div:nth-of-type(-n+3) {
   border-bottom: 1px solid #D9D9D9;
 }
 
@@ -232,7 +243,7 @@ ul > div:nth-of-type(-n+2) {
     text-decoration: none;
     color: #070A22;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: medium;
 }
 .novo_treino img {
     width: 26.833px;

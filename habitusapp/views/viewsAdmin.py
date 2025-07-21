@@ -11,6 +11,9 @@ import os
 from habitusapp.models import Noticia, Admin, Professor
 from habitusapp.forms import NoticiaForm
 
+@login_required
+def professores(request):
+    return render(request, 'PagsAdmin/professores.html')
 
 
 

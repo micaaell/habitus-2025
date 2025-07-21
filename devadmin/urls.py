@@ -37,11 +37,13 @@ urlpatterns = [
     path('perfil/editar-foto', viewsUsuario.editar_foto, name='editar_foto'),
     path('meus_dados/', viewsUsuario.meus_dados, name='meus_dados'),
     path('novo_treino/', viewsUsuario.novo_treino, name='novo_treino'),
+    path('buscar-exercicios/', viewsUsuario.buscar_exercicios, name='buscar_exercicios'),
 
     #Páginas Professor
     path('gerenciar_noticias/', viewsProfessor.gerenciar_noticias, name='gerenciar_noticias'),
     path('publicar_noticia/', viewsProfessor.publicar_noticia, name='publicar_noticia'),
 
     #Páginas Admin
+    path('professores/', viewsAdmin.professores, name='professores'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

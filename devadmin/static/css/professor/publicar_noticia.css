@@ -32,8 +32,17 @@ header{
     right: 20px;
   }
 header img{
+    cursor: pointer;
+}
+.logo-h img{
     width: 50px;
-    height: 40px;
+    cursor: pointer;
+}
+.seta-voltar img{
+    width: 25px;
+}
+.menu-icon img{
+    width:30px;
     cursor: pointer;
 }
 

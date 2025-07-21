@@ -66,3 +66,16 @@ class NoticiaForm(forms.ModelForm):
     class Meta:
         model = Noticia
         fields = ['imagem','categoria','descricao']
+
+from django import forms
+from .models import Treino
+
+class TreinoForm(forms.ModelForm):
+    class Meta:
+        model = Treino
+        fields = ['nome', 'nivel', 'data_inicio', 'data_fim']
+        widgets = {
+            'data_inicio': forms.DateInput(attrs={'type': 'date'}),
+            'data_fim': forms.DateInput(attrs={'type': 'date'}),
+        }
+

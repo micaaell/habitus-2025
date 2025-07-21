@@ -35,14 +35,15 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'meus_dados' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Dados pessoais</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
@@ -60,14 +61,19 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Noticias">Notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                    </div>
+                    <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
@@ -85,15 +91,20 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/professores.png' %}" alt="Professores">Professores</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/exercicios.png' %}" alt="Exercícios">Exercícios</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-exercicios.png' %}" alt="">Exercícios</a></li>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                        <li><a href="{% url 'professores' %}"><img src="{% static 'icones-site/icone-professores.png' %}" alt="">Professores</a></li>
+                    </div>
+                    <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>

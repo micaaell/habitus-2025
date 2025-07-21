@@ -9,6 +9,7 @@
     <link rel="icon" href ="{% static 'icones-site/logo-h-pequena.png' %}">
     <link rel="stylesheet" href="{% static 'css/usuario/novo_treino.css' %}">
     <script src="{% static 'js/usuario/menu.js' %}"></script>
+    <script src="{% static 'js/usuario/novo_treino.js' %}"></script>
 </head>
 <body>
     <header>
@@ -35,14 +36,15 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'meus_dados' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Dados pessoais</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
@@ -60,14 +62,19 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Noticias">Notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/unidade.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                    </div>
+                    <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
@@ -85,15 +92,20 @@
                 </div>
                 <ul>
                     <div>
-                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="Abrir Ultimas Noticias">Notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/professores.png' %}" alt="Professores">Professores</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/exercicios.png' %}" alt="Exercícios">Exercícios</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-exercicios.png' %}" alt="">Exercícios</a></li>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-professores.png' %}" alt="">Professores</a></li>
+                    </div>
+                    <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
@@ -105,48 +117,55 @@
     {% endif %}
       
     <main>
+
     <section class="nome-pagina">
         <h1>Novo Treino</h1>
     </section>
     <section class="container">
         <form method="post">
             {% csrf_token %}
-            
-            <input type="text" name="nome" placeholder="Nome do treino" required>
-            <input type="date" name="data_inicio" required>
-            <input type="date" name="data_fim" required>
-
-            {% for exercicio in exercicios %}
-            <div class="card-exercicio">
-                
-                <!-- Vídeo ou imagem -->
-                {% if exercicio.video %}
-                <video class="video-exercicio" autoplay loop muted playsinline>
-                    <source src="{{ exercicio.video.url }}" type="video/mp4">
-                    Seu navegador não suporta vídeos.
-                </video>
-                {% else %}
-                    <img src="{% static 'icones-site/sem-video.png' %}" alt="Sem vídeo" class="imagem-exercicio">
-                {% endif %}
-
-                <div class="info-exercicio">
-                    <label>
-                        <input type="checkbox" name="exercicios" value="{{ exercicio.id }}">
-                        {{ exercicio.nome }} ({{ exercicio.grupo_muscular }})
-                    </label>
-
-                    <div class="inputs">
-                        <input type="number" name="series" placeholder="Séries">
-                        <input type="number" name="repeticoes" placeholder="Repetições">
-                        <input type="text" name="carga" placeholder="Carga (kg)">
-                        <input type="text" name="observacoes" placeholder="Observações">
-                    </div>
+            <div class="nome">
+                <label for="nome-treino">Nome do treino:</label>
+                <input type="text" name="nome" placeholder="Crie um nome para o seu treino" required>
+            </div>
+            <div class="quant-nivel">
+                <div class="quant-exercicios">
+                    <label for="quant-exercicios-treino">Exercícios:</label>
+                    <div id="quant-exercicios" class="exercicio-label"><p>0 exercícios inseridos no treino</p></div>
+                </div>
+                <div class="nivel">
+                    <label for="nivel-treino">Nível:</label>
+                    <select name="nivel" required>
+                        <option value="" disabled selected>Selecione o nível</option>
+                        <option value="I">Iniciante</option>
+                        <option value="M">Intermediário</option>
+                        <option value="A">Avançado</option>
+                    </select>
                 </div>
             </div>
-            {% endfor %}
+            <div class="datainicio-datafim">
+                <div class="data-inicio">
+                    <label for="data-inicio">Data início:</label>
+                    <input type="date" name="data_inicio" required>
+                </div>
+                <div>
+                    <label for="data-fim">Data fim:</label>
+                    <input type="date" name="data_fim" required>
+                </div>
+            </div>
+
+            <div class="busca-exercicios">
+                <label for="busca">Adicionar exercício:</label>
+                <input type="text" id="busca-exercicio" placeholder="Localize o exercício pelo nome">
+            </div>
+            <div id="resultados-exercicios"></div>
+
+            <hr>
+            <h3>Exercícios Selecionados:</h3>
+            <div id="exercicios-selecionados"></div>
 
             <!-- Botão de envio -->
-             <div>
+             <div class="botoes">
                 <a href="javascript:history.back()">Cancelar</a>
                 <button type="submit">Adicionar treino</button>
              </div>

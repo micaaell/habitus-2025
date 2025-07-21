@@ -124,6 +124,7 @@ def novo_treino(request):
         nome = request.POST.get('nome')
         data_inicio = request.POST.get('data_inicio')
         data_fim = request.POST.get('data_fim')
+        nivel = request.POST.get('nivel')
         exercicios_ids = request.POST.getlist('exercicios')  # IDs dos exercícios
         series = request.POST.getlist('series')
         repeticoes = request.POST.getlist('repeticoes')
@@ -134,6 +135,7 @@ def novo_treino(request):
             nome=nome,
             data_inicio=data_inicio,
             data_fim=data_fim,
+            nivel = nivel,
             quant_exercicios=len(exercicios_ids),
             usuario=request.user
         )
@@ -154,7 +156,20 @@ def novo_treino(request):
     return render(request, 'PagsUsuario/novo_treino.html', {'exercicios': exercicios})
 
 
+from django.http import JsonResponse
+from habitusapp.models import Exercicio
 
-
+def buscar_exercicios(request):
+    termo = request.GET.get("q", "").strip().lower()
+    exercicios = Exercicio.objects.filter(nome__icontains=termo)[:10]
+    data = []
+    for e in exercicios:
+        data.append({
+            "id": e.id,
+            "nome": e.nome,
+            "grupo_muscular": e.grupo_muscular,
+            "video_url": e.video.url if e.video else None
+        })
+    return JsonResponse(data, safe=False)
 
 

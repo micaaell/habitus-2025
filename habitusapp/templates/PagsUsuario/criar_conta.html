@@ -44,7 +44,6 @@
         </div>
 
         <div class="login-box">
-            <h1>Crie sua conta no Habitus</h1>
 
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -58,31 +57,44 @@
                     {% endif %}
                 </label>
                 
-
                 <!-- Input invisível (mas funcional) -->
                 <input type="file" name="foto_perfil" id="id_foto_perfil" accept="image/*" style="display: none;" onchange="previewImagem()">
+                <h2>Foto de perfil</h2>
                 <!-- Botão de remover (começa escondido) -->
                 <button type="button" id="remover-foto-btn" onclick="removerFoto()" style="display:none; margin-top: 10px;">Remover Foto</button>
 
+                <h1>DADOS PESSOAIS</h1>
                 <!-- Campo: Nome completo -->
                 <label for="id_nome">Nome:</label>
                 <input type="text" name="nome" id="id_nome" required placeholder="Insira o seu nome completo">
                 
-                <!-- Campo: CPF -->
-                <label for="id_cpf">CPF:</label>
-                <input type="text" name="cpf" id="id_cpf" required placeholder="xxx.xxx.xxx-xx">
+                <div class="usuario-data">
+                    <!-- Campo: Nome de usuário -->
+                    <div>
+                        <label for="id_username">Usuário:</label>
+                        <input type="text" name="username" id="id_username" required placeholder="Crie seu username">
+                    </div>
                 
-                <!-- Campo: Data de nascimento -->
-                <label for="id_data_nasc">Data de nascimento:</label>
-                <input type="date" name="data_nasc" id="id_data_nasc" required>
-                
-                <!-- Campo: Telefone -->
-                <label for="id_telefone">Telefone:</label>
-                <input type="text" name="telefone" id="id_telefone" placeholder="(DDD) 9xxxx-xxxx">
+                    <!-- Campo: Data de nascimento -->
+                     <div>
+                        <label for="id_data_nasc">Data de nascimento:</label>
+                        <input type="date" name="data_nasc" id="id_data_nasc" required>
+                    </div>
+                </div>
 
-                <!-- Campo: Nome de usuário -->
-                <label for="id_username">Nome de usuário:</label>
-                <input type="text" name="username" id="id_username" required placeholder="Crie um username para sua conta">
+                <div class="cpf-telefone">
+                    <!-- Campo: CPF -->
+                     <div>
+                        <label for="id_cpf">CPF:</label>
+                        <input type="text" name="cpf" id="id_cpf" required placeholder="xxx.xxx.xxx-xx">
+                    </div>
+                
+                    <!-- Campo: Telefone -->
+                     <div>
+                        <label for="id_telefone">Telefone:</label>
+                        <input type="text" name="telefone" id="id_telefone" placeholder="(DDD) 9xxxx-xxxx">
+                    </div>
+                </div>
 
                 <!-- Campo: E-mail -->
                 <label for="id_email">E-mail:</label>
@@ -93,7 +105,7 @@
                 <input type="password" name="password" id="id_password" required placeholder="Crie uma senha com no mínimo 8 digítos">
                 
                 <!-- Botão de envio -->
-                 <div>
+                 <div class="botoes">
                     <a href="javascript:history.back()">Cancelar</a>
                     <button type="submit">Criar Conta</button>
                  </div>
