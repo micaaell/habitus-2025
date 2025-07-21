@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professores</title>
     <link rel="icon" href ="{% static 'icones-site/logo-h-pequena.png' %}">
-    <link rel="stylesheet" href="{% static 'css/usuario/feed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin/professores.css' %}">
     <script src="{% static 'js/usuario/menu.js' %}"></script>
 </head>
 <body>
@@ -116,10 +116,43 @@
     {% endif %}
     <main>
     <section class="nome-pagina">
-        <h1>Professores</h1>
+        <h1>Gerenciar professores</h1>
     </section>
     <section class="container">
-        <h2>Bem-vindo, Admin!</h2>
+
+        <form method="get">
+            <input 
+            type="text" 
+            name="busca" 
+            placeholder="Localize o professor pelo nome ou matrícula" 
+            value="{{ busca }}"/>
+        </form>
+
+        <a href="{% url 'novo_professor'%}"><button>Adicionar novo professor</button></a>
+
+        {% for prof in professores %}
+
+            <div class="professor">
+
+                {% if perfil.foto_perfil %}
+                    <img src="{{ prof.foto_perfil.url }}" alt="Foto de Perfil">
+                {% else %}
+                    <img src="{% static 'icones-site/sem-foto.png' %}" alt="Foto de Perfil Padrão">
+                {% endif %}
+
+                <div>
+                    <p>{{ prof.nome }}</p>
+                    <p>Estagiário</p>
+                </div>
+
+                <a href="{% url 'professor' %}"><button>C</button></a>
+
+            </div>
+
+        {% empty %}
+            <p>Nenhum professor cadastrado.</p>
+        {% endfor %}
+
     </section>
 
     <menu>
