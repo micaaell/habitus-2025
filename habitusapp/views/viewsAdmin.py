@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from habitusapp.forms import AlunoForm
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.models import User
@@ -37,8 +37,9 @@ def novo_professor(request):
     return render(request, 'PagsAdmin/novo_professor.html')
 
 @login_required
-def professor(request):
-    return render(request, 'PagsAdmin/professor.html')
+def professor(request, pk):
+    professor = get_object_or_404(Professor, pk=pk)
+    return render(request, 'PagsAdmin/professor.html', {'professor': professor})
 
 
 

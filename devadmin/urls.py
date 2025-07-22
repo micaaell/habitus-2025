@@ -46,6 +46,6 @@ urlpatterns = [
     #Páginas Admin
     path('professores/', viewsAdmin.professores, name='professores'),
     path('novo-professor/', viewsAdmin.novo_professor, name='novo_professor'),
-    path('professor/', viewsAdmin.professor, name='professor'),
+    path('professor/<int:pk>/', viewsAdmin.professor, name='professor'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
