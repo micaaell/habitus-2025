@@ -23,7 +23,6 @@ class Admin(models.Model):
     email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=15, blank=True, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
-    data_admissao = models.DateField()
     tipo_trabalho = models.CharField(
         max_length=20,
         choices=Tipo_Trabalho.choices,

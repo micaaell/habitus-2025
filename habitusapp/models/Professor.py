@@ -19,7 +19,7 @@ class Professor(models.Model):
     matricula = models.CharField(max_length=20, primary_key=True, editable=False, unique=True)
     foto_perfil = models.ImageField(null=True, blank=True, upload_to='foto-perfil-professor/')
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=14, unique=True)
+    cpf = models.CharField(max_length=14, unique=True, editable=False)
     data_nasc = models.DateField()
     email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=15, blank=True, null=True)

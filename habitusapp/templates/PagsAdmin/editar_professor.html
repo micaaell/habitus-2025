@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professores</title>
+    <title>Professor</title>
     <link rel="icon" href ="{% static 'icones-site/logo-h-pequena.png' %}">
-    <link rel="stylesheet" href="{% static 'css/admin/professores.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin/editar_professor.css' %}">
     <script src="{% static 'js/usuario/menu.js' %}"></script>
 </head>
 <body>
@@ -116,43 +116,72 @@
     {% endif %}
     <main>
     <section class="nome-pagina">
-        <h1>Gerenciar professores</h1>
+        <h1>Editar professor</h1>
     </section>
     <section class="container">
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="info">
+                <label for="id_nome">Nome:</label>
+                {{ form.nome }}
+            </div>
 
-        <form method="get">
-            <input 
-            type="text" 
-            name="busca" 
-            placeholder="Localize o professor pelo nome ou matrícula" 
-            value="{{ busca }}"/>
-        </form>
+            <div class="linha">
 
-        <a href="{% url 'novo_professor'%}"><button>Adicionar novo professor</button></a>
-
-        {% for prof in professores %}
-
-            <div class="professor">
-
-                {% if prof.foto_perfil %}
-                    <img src="{{ prof.foto_perfil.url }}" alt="Foto de Perfil">
-                {% else %}
-                    <img src="{% static 'icones-site/sem-foto.png' %}" alt="Foto de Perfil Padrão">
-                {% endif %}
-
-                <div>
-                    <p>{{ prof.nome }}</p>
-                    <p>Estagiário</p>
+                <div class="info">
+                    <label for="id_username">Usuário:</label>
+                    <input type="text" name="username" id="id_username" 
+                    value="{{ form.username.value }}" class="form-control {% if form.username.errors %}is-invalid{% endif %}">
+                    {% if form.username.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
 
-                <a href="{% url 'professor' prof.pk %}"><button>C</button></a>
+                <div class="info">
+                    <label for="id_telefone">Telefone:</label>
+                    {{ form.telefone }}
+                </div>
 
             </div>
 
-        {% empty %}
-            <p>Nenhum professor cadastrado.</p>
-        {% endfor %}
+            <div class="info">
+                <label for="id_email">Email:</label>
+                <input type="email" name="email" id="id_email" 
+                value="{{ form.email.value }}" class="form-control {% if form.email.errors %}is-invalid{% endif %}">
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
+            
+            <div class="info">
+                <label>Senha:</label>
+                <input placeholder="Aqui estará a senha">
+            </div>
+            <div class="botoes">
+                <a href="{% url 'professor' professor.pk %}"><button class="cancel">Cancelar</button></a>
+                <button type="submit" class="save">Salvar</button>
+            </div>
+        </form>
+        
     </section>
 
     <menu>

@@ -11,6 +11,59 @@
     <script src="{% static 'js/usuario/menu.js' %}"></script>
 </head>
 <body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fotoUpload = document.getElementById('foto-upload');
+            const fotoForm = document.getElementById('foto-form');
+            const messageDiv = document.getElementById('foto-message');
+
+            // Quando clicar na foto (ou no ícone de edição)
+            document.querySelector('.foto-wrapper').addEventListener('click', function(e) {
+                e.preventDefault();
+                fotoUpload.click(); // Abre o seletor de arquivos
+            });
+
+            // Quando selecionar uma nova foto
+            fotoUpload.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    // Pré-visualização
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('foto-professor').src = e.target.result;
+
+                        // Envia o formulário automaticamente
+                        const formData = new FormData(fotoForm);
+                        fetch(fotoForm.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRFToken': '{{ csrf_token }}'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            showMessage(data.message, data.success);
+                        })
+                        .catch(error => {
+                            showMessage('', false);
+                        });
+                    };
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
+            function showMessage(message, isSuccess) {
+                messageDiv.textContent = message;
+                messageDiv.style.backgroundColor = isSuccess ? '#4CAF50' : '#F44336';
+                messageDiv.style.display = 'block';
+
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
     <header>
         <div class="seta-voltar">
             <a href="javascript:history.back()">
@@ -120,13 +173,24 @@
     </section>
     <section class="container">
 
-        {% if perfil.foto_perfil %}
-            <img src="{{ professor.foto_perfil.url }}" alt="Foto de Perfil">
-        {% else %}
-            <img src="{% static 'icones-site/sem-foto.png' %}" alt="Foto de Perfil Padrão">
-        {% endif %}
+        <div class="foto-container">
+            <label for="foto-upload" class="foto-wrapper">
+                <img id="foto-professor" 
+                     src="{% if professor.foto_perfil %}{{ professor.foto_perfil.url }}{% else %}{% static 'icones-site/sem-foto.png' %}{% endif %}" 
+                     alt="Foto de {{ professor.nome }}" 
+                     class="foto-perfil">
+            </label>
 
-        <a><button class="ed_foto">E</button></a>
+            <form id="foto-form" method="post" action="{% url 'atualizar_foto_professor' pk=professor.pk %}" enctype="multipart/form-data" style="display: none;">
+                {% csrf_token %}
+                <input type="file" id="foto-upload" name="foto" accept="image/*" required>
+            </form>
+        </div>
+
+<!-- Mensagem flutuante -->
+        <div id="foto-message" class="foto-message"></div>
+
+        
 
         <h2>{{ professor.nome }}</h2>
         <p>Estagiário</p>
@@ -157,7 +221,7 @@
                 </div>
             </div>
             <p>E-mail: </p>
-            <p>{{ professor.email }}</p>
+            <p>{{ professor.user.email }}</p>
             <p>Senha: </p>
             <p> *** </p>
            
@@ -182,7 +246,7 @@
 
         <div class="botoes">
             <a><button class="inativar">Inativar conta</button></a>
-            <a><button class="editar">Editar dados</button></a>
+            <a href="{% url 'editar_professor' professor.matricula %}"><button class="editar">Editar dados</button></a>
         </div>
         
     </section>

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django import forms
 from django.contrib.auth.models import User, Group
 from .models import Aluno
+from django.core.exceptions import ValidationError
 
 class EmailLoginForm(forms.Form):
     email = forms.EmailField()
@@ -79,3 +80,71 @@ class TreinoForm(forms.ModelForm):
             'data_fim': forms.DateInput(attrs={'type': 'date'}),
         }
 
+
+from .models import Professor 
+class ProfessorForm(forms.ModelForm):
+    username = forms.CharField(
+        label='Nome de usuário',
+        max_length=150,
+        required=True
+    )
+    email = forms.EmailField(
+        label='Email',
+        required=True
+    )
+    
+    class Meta:
+        model = Professor
+        fields = ['nome', 'telefone']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance and self.instance.user:
+            self.fields['username'].initial = self.instance.user.username
+            self.fields['email'].initial = self.instance.user.email
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+      
+      # Verifica se o username foi alterado
+        if hasattr(self.instance, 'user') and self.instance.user and self.instance.user.username == username:
+            return username  # Não mudou, não precisa validar
+          
+      # Verifica se o username já existe
+        if User.objects.filter(username=username).exists():
+            raise ValidationError('Este nome de usuário já está em uso. Por favor, escolha outro.')
+
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+    
+    # Verifica se o email foi alterado
+        if hasattr(self.instance, 'user') and self.instance.user and self.instance.user.email == email:
+            return email  # Não mudou, não precisa validar
+        
+    # Verifica se o email já existe
+        if User.objects.filter(email=email).exists():
+            raise ValidationError('Este email já está em uso. Por favor, utilize outro.')
+    
+        return email
+        
+
+    
+    def save(self, commit=True):
+        professor = super().save(commit=False)
+        username = self.cleaned_data['username']
+        email = self.cleaned_data['email']
+        
+        if professor.user:
+            # Atualiza o usuário existente
+            user = professor.user
+            user.username = username
+            user.email = email
+            user.save()
+        else:
+            pass
+        
+        if commit:
+            professor.save()
+        return professor
