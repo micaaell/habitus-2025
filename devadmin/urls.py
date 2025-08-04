@@ -33,11 +33,15 @@ urlpatterns = [
     path('criar_conta/', criar_conta, name='criar_conta'),
     path('feed/', viewsUsuario.feed, name='feed'),
     path('treinos/', viewsUsuario.treinos, name='treinos'),
+    path('treinos/<int:treino_id>/', viewsUsuario.detalhes_treino, name='detalhes_treino'),
     path('perfil/', viewsUsuario.perfil, name='perfil'),
     path('perfil/editar-foto', viewsUsuario.editar_foto, name='editar_foto'),
     path('meus_dados/', viewsUsuario.meus_dados, name='meus_dados'),
     path('novo_treino/', viewsUsuario.novo_treino, name='novo_treino'),
     path('buscar-exercicios/', viewsUsuario.buscar_exercicios, name='buscar_exercicios'),
+    path('notificacoes/', viewsUsuario.notificacoes, name='notificacoes'),
+    path('treinos/treino/<int:treino_id>/', viewsUsuario.comecar_treino, name='treino'),
+    path('treino/<int:treino_id>/finalizar/', viewsUsuario.finalizar_treino, name='finalizar_treino'),
 
     #Páginas Professor
     path('gerenciar_noticias/', viewsProfessor.gerenciar_noticias, name='gerenciar_noticias'),

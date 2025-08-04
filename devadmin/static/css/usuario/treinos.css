@@ -68,6 +68,11 @@ h1{
     font-size: 20px;
     margin:0;
 }
+.novo_treino h2{
+    font-weight: 500;
+    font-size: 15px;
+    margin: 0px 0px 0px 8px;
+}
 main{
     padding-bottom: 100px;
 }
@@ -83,7 +88,7 @@ main{
     margin-bottom: 13px;
 }
 .container{
-    margin-top: 2em;
+    margin-top: 88px;
 }
 .treino-dia h2{
     color: #FFF;
@@ -107,7 +112,7 @@ main{
     padding: 4px 12px 4px 12px;
 }
 .treino-dia div img{
-    width: 84.751px;
+    width: 85px;
     flex-shrink: 0;
     height: 85px;
     display: block;
@@ -231,7 +236,7 @@ ul > div:nth-of-type(-n+3) {
     font-size: 1.2em;
 }
 .novo_treino {
-    margin-top: 73px;
+    margin-bottom: 25px;
     height: 40px;
     flex-shrink: 0;
     width: 340px;
@@ -241,9 +246,7 @@ ul > div:nth-of-type(-n+3) {
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #070A22;
-    font-size: 15px;
-    font-weight: medium;
+    color: #000000;
 }
 .novo_treino img {
     width: 26.833px;
@@ -255,4 +258,24 @@ ul > div:nth-of-type(-n+3) {
 
 .seta-voltar {
     margin-left: 0;
+}
+video {
+    width: 85px;
+    height: 85px;
+    margin: 0;
+    border-radius: 10px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+.video-exercicio {
+    margin-left: 10px;
+    margin: 0px 0px 0px 10px;
+    width: 85px;
+    height: 85px;
+}
+span{
+    margin-right: 15px;
+}
+.informacoes-treino {
+    margin: 0px 0px 0px 15px;
 }

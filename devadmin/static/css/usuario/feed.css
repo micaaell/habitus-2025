@@ -92,12 +92,15 @@ h1 {
 }
 .container h2{
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     text-align: center;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
+}
+.detalhes-treino{
+    margin: 0px auto 0px 7px;
 }
 .container > div{
     margin-top: 28px;
@@ -128,9 +131,10 @@ h1 {
 }
 
 .treino-dia img{
-    width: 91px;
+    width: 96px;
     flex-shrink: 0;
-    height: 91px;
+    height: 96px;
+    margin-left: 15px;
 }
 .treino-dia a{
     background-color: #1E1C37;

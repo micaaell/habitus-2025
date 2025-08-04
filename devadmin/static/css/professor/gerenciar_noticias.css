@@ -92,20 +92,23 @@ h1 {
 }
 .container h2{
     color: white;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 500;;
     line-height: normal;
     text-align: center;
-    margin-bottom: 13px;
+    margin: 0px 0px 0px 15px;
 }
 .container > div{
-    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 35px;
+    margin-bottom: 30px;
     width: 340px;
-    height: 203px;
+    height: 45px;
     flex-shrink: 0;
-    border-radius: 10px 10px 0px 0px;
-    background: #1E1C37;
+    border-radius: 50px;
+    background: #4E5A6E;
 }
 .container h1{
     color: white;
@@ -290,4 +293,26 @@ p.data-publicacao {
 
 .seta-voltar {
     margin-left: 0;
+}
+
+.botao-add img {
+    margin: 0px 10px 0px 0px;
+    width: 18px;
+}
+a.botao-add {
+    background-color: #C5F022;
+    height: 40px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.filtros img {
+    width: 22px;
+    margin: 0px 15px 0px 15px;
 }

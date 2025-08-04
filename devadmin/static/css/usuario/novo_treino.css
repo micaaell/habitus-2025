@@ -287,6 +287,7 @@ ul > div:nth-of-type(-n+3) {
 }
 label{
     margin: 0;
+    margin-bottom: 2px;
     color: white;
     font-size: 15px;
 }
@@ -384,6 +385,10 @@ button{
     font-size: 15px;
     cursor: pointer;
 }
+button.botao-excluir {
+    width: 312px;
+    border-radius: 50px;
+}
 .botoes a{
     text-decoration: none;
     color: white;
@@ -417,6 +422,8 @@ button{
     font-size: 15px;
     font-weight: 700;
     line-height: normal;
+    display: flex;
+    align-items: center;
 }
 label.grupo-muscular{
     padding: 4px 20px 4px 20px;
@@ -429,6 +436,10 @@ label.grupo-muscular{
 .inputs {
     width: 100%;
     display: grid;
+}
+input.checkbox-exercicio {
+    margin: 0;
+    margin-left: 10px;
 }
 .add-exercicio {
     display: flex;
@@ -459,4 +470,28 @@ label.grupo-muscular{
 .btn-adicionar img {
     width: 15px;
     margin: 0px 10px 0px 0px;
+}
+.inputs-detalhes input {
+    width: 92px;
+    margin-bottom: 10px;
+}
+.inputs-detalhes {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.inputs-detalhes h2 {
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    margin-bottom:1px;
+}
+.inputs-observacoes input {
+    width: 312px;
+}
+.inputs-observacoes h2 {
+    font-size: 12px;
+    color: white;
+    font-weight: 500;
+    margin-bottom:1px;
 }

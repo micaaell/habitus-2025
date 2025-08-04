@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino</title>
+    <link rel="icon" href ="{% static 'icones-site/logo-h-pequena.png' %}">
+    <link rel="stylesheet" href="{% static 'css/usuario/treino.css' %}">
+    <script src="{% static 'js/usuario/menu.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="seta-voltar">
+            <a href="javascript:history.back()">
+                <img src="{% static 'icones-site/seta-voltar.png' %}" alt="Ícone seta voltar">
+            </a>
+        </div>
+        <div class="logo-h">
+          <a href="{% url 'feed' %}"><img src="{% static 'icones-site/logo-h.png' %}" alt="Logo Habitus"></a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+          <img id="menu-icon" src="{% static 'icones-site/menu-lateral.png' %}" alt="Abrir Menu">
+        </div>
+    </header>
+      
+    {% if user.is_authenticated %}
+        {% if user.groups.first.name == "Aluno" %}
+            <!-- MENU PARA ALUNO -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+
+        {% elif user.groups.first.name == "Professor" %}
+            <!-- MENU PARA PROFESSOR -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+
+        {% elif user.groups.first.name == "Admin" %}
+            <!-- MENU PARA ADMIN -->
+            <nav id="menu-lateral" class="menu-lateral">
+                <div class="fechar">
+                    <h1>Menu</h1>
+                    <button class="fechar-menu" onclick="toggleMenu()">✕</button>
+                </div>
+                <ul>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-exercicios.png' %}" alt="">Exercícios</a></li>
+                        <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-professores.png' %}" alt="">Professores</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                    </div>
+                    <div>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                    </div>
+                </ul>
+            </nav>
+        {% endif %}
+    {% endif %}
+    <main>
+    <section class="nome-pagina">
+        <h1>{{ treino.nome }}</h1>
+    </section>
+
+    <section class="container">
+        {% if exercicio_atual %}
+        <div class="treino-atual">
+            <h2>{{ exercicio_atual.exercicio.nome }}</h2>
+
+            {% if exercicio_atual.exercicio.video %}
+            <video autoplay loop muted playsinline>
+                <source src="{{ exercicio_atual.exercicio.video.url }}" type="video/mp4">
+                Seu navegador não suporta o vídeo.
+            </video>
+            {% else %}
+            <p><em>Sem vídeo para este exercício.</em></p>
+            {% endif %}
+
+            <ul>
+            <li><strong>Séries:</strong> {{ exercicio_atual.series }}</li>
+            <li><strong>Repetições:</strong> {{ exercicio_atual.repeticoes }}</li>
+            <li><strong>Carga:</strong> {{ exercicio_atual.carga }}</li>
+            {% if exercicio_atual.observacao %}
+                <li><strong>Observação:</strong> {{ exercicio_atual.observacao }}</li>
+            {% endif %}
+            </ul>
+
+            <a class="botao-proximo" href="?ex={{ proximo_index }}">
+            Próximo exercício
+            </a>
+            <a class="botao-finalizar-treino" href="{% url 'finalizar_treino' treino.id %}">
+                Finalizar treino
+            </a>
+
+        </div>
+        {% else %}
+        <div class="treino-finalizado">
+            <h2>🏁 Treino finalizado!</h2>
+            <p>Você concluiu todos os exercícios!</p>
+            <a href="{% url 'treinos' %}" class="botao-voltar">Voltar aos treinos</a>
+        </div>
+        {% endif %}
+    </section>
+    </main>
+
+    
+    </menu>
+</body>
+</html>

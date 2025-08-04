@@ -60,9 +60,27 @@ def feed(request):
     })
 
 
+from django.contrib.auth.decorators import login_required
+from habitusapp.models import Treino
+from django.db.models import Sum
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from habitusapp.models import Treino, Notificacao
+
 @login_required
 def treinos(request):
-    return render(request, 'PagsUsuario/treinos.html')
+    treinos_usuario = Treino.objects.filter(usuario=request.user).order_by('-id')
+
+    return render(request, 'PagsUsuario/treinos.html', {
+        'treinos_usuario': treinos_usuario,
+    })
+
+
+@login_required
+def detalhes_treino(request, treino_id):
+    treino = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+    return render(request, 'PagsUsuario/detalhes_treino.html', {'treino': treino})
 
 @login_required
 def meus_dados(request):
@@ -108,6 +126,10 @@ def editar_foto(request):
 
         perfil.foto_perfil = request.FILES['nova_foto']
         perfil.save()
+        Notificacao.objects.create(
+        usuario=request.user,
+        conteudo="Você alterou sua foto de perfil"
+        )
 
         return redirect('perfil')
 
@@ -117,6 +139,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from habitusapp.models import Treino, TreinoExercicio, Exercicio
 from django.utils import timezone
+from datetime import datetime
 
 @login_required
 def novo_treino(request):
@@ -131,13 +154,21 @@ def novo_treino(request):
         carga = request.POST.getlist('carga')
         observacoes = request.POST.getlist('observacoes')
 
+        # Conversão das datas
+        data_inicio = datetime.strptime(data_inicio, "%Y-%m-%d").date()
+        data_fim = datetime.strptime(data_fim, "%Y-%m-%d").date()
+
         treino = Treino.objects.create(
             nome=nome,
             data_inicio=data_inicio,
             data_fim=data_fim,
-            nivel = nivel,
+            nivel=nivel,
             quant_exercicios=len(exercicios_ids),
             usuario=request.user
+        )
+        Notificacao.objects.create(
+            usuario=request.user,
+            conteudo="Você criou um novo treino."
         )
 
         for i in range(len(exercicios_ids)):
@@ -156,6 +187,7 @@ def novo_treino(request):
     return render(request, 'PagsUsuario/novo_treino.html', {'exercicios': exercicios})
 
 
+
 from django.http import JsonResponse
 from habitusapp.models import Exercicio
 
@@ -171,5 +203,81 @@ def buscar_exercicios(request):
             "video_url": e.video.url if e.video else None
         })
     return JsonResponse(data, safe=False)
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from habitusapp.models import Notificacao
+
+@login_required
+def notificacoes(request):
+    notificacoes = Notificacao.objects.filter(usuario=request.user)
+    notificacoes.update(lida=True)  # marca todas como lidas
+    return render(request, 'PagsUsuario/notificacoes.html', {'notificacoes': notificacoes})
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from habitusapp.models import Treino
+
+@login_required
+def comecar_treino(request, treino_id):
+    treino = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+    exercicios = list(treino.exercicios_treino.all())
+    
+    index = int(request.GET.get('ex', 0))  # pega o index atual
+    if index < len(exercicios):
+        exercicio_atual = exercicios[index]
+    else:
+        exercicio_atual = None  # acabou o treino
+
+    return render(request, 'PagsUsuario/treino.html', {
+        'treino': treino,
+        'exercicio_atual': exercicio_atual,
+        'proximo_index': index + 1,
+        'total': len(exercicios)
+    })
+
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from habitusapp.models import Treino
+
+@login_required
+def finalizar_treino(request, treino_id):
+    treino = get_object_or_404(Treino, id=treino_id, usuario=request.user)
+
+    # Diminui 1 do progresso geral se for maior que 0
+    if treino.progresso_geral > 0:
+        treino.progresso_geral -= 1
+        treino.save()
+
+    return HttpResponseRedirect(reverse('treinos'))
+
+
+from django.db.models import Sum
+from habitusapp.models import Treino
+
+def calcular_progresso_usuario(usuario):
+    treinos = Treino.objects.filter(usuario=usuario)
+    total_treinos = treinos.count()
+    soma_quant = treinos.aggregate(Sum('quant_treinos'))['quant_treinos__sum'] or 0
+
+    if total_treinos > 0:
+        progresso = round(soma_quant / total_treinos)
+
+        # Atualiza todos os treinos com o novo valor
+        treinos.update(progresso_geral=progresso)
+
+        return progresso
+    else:
+        # Se não há treinos, zera todos
+        treinos.update(progresso_geral=0)
+        return 0
+
 
 

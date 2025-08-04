@@ -119,6 +119,10 @@
         <h1>Gerenciar notícias</h1>
     </section>
         <section class="container">
+            <div class="filtros">
+                <h2>Filtre pelo assunto da notícia</h2>
+                <img src="{% static 'icones-site/icone-select.png' %}" alt="Icone select">
+            </div>
             <a class="botao-add" href="{% url 'publicar_noticia' %}">
                 <img src="{% static 'icones-site/publicar-noticia.png' %}" alt="Publicar notícia">
                 Nova notícia
