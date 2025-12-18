@@ -53,8 +53,8 @@ form{
 }
 form input{
     border-radius: 10px;
-    padding: 0;
-    width: 340px;
+    padding: 0 0 0 10px;
+    width: 330px;
     flex-shrink: 0;
     height: 52px;
     border: none;
@@ -70,7 +70,6 @@ input::placeholder {
 form label{
     color: white;
     margin-left: 0;
-    margin-left: 0px;
     font-weight: 500;
     font-size: 15px;
     margin-bottom: 2px;
@@ -174,6 +173,13 @@ a.btn-secundario{
     margin: 0 10px;
     width: 200px;
 }
+
+/* aplica aos inputs/textarea/select usados no formulário */
+input, textarea, select, button {
+  font-size: 16px; /* valor mínimo que evita o zoom no iOS */
+  -webkit-text-size-adjust: 100%;
+}
+
 
 
 

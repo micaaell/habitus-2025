@@ -18,7 +18,8 @@ class Exercicio(models.Model):
         INTERMEDIARIO = 'Intermediário', 'Intermediário'
         AVANCADO = 'Avançado', 'Avançado'
 
-    video = models.FileField(upload_to='devadmin/static/videos-exercicios/', blank=True, null=True)
+    video = models.FileField(upload_to='videos-exercicios/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='imagens-exercicios/', null=True, blank=True)
     nome = models.CharField(max_length=100)
     grupo_muscular = models.CharField(
         max_length=20,

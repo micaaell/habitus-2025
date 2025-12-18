@@ -5,16 +5,13 @@ from datetime import datetime
 class Noticia(models.Model):
     class CategoriaChoices(models.TextChoices):
         AVISO_IMPORTANTE = 'AVISO IMPORTANTE', 'Aviso Importante'
-        ALERTA = 'ALERTA', 'Alerta'
-        INFORMACAO = 'INFORMAÇÃO', 'Informação'
-        FUNCIONAMENTO = 'FUNCIONAMENTO', 'Funcionamento'
-        OUTRO = 'OUTRO', 'Outro'
+        EVENTO = 'EVENTO', 'Evento'
 
     imagem = models.ImageField(upload_to='noticias/', blank=True, null=True)
     categoria = models.CharField(
         max_length=20,
         choices=CategoriaChoices.choices,
-        default=CategoriaChoices.INFORMACAO
+        default=CategoriaChoices.AVISO_IMPORTANTE
     )
     descricao = models.TextField(blank=True, null=True)
     data_publicacao = models.DateTimeField(default=datetime.now)

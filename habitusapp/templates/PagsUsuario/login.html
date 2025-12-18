@@ -7,8 +7,9 @@
     <title>Login</title>
     <link rel="icon" href="{% static 'icones-site/logo-h-pequena.png' %}">
     <link rel="stylesheet" href="{% static 'css/usuario/login.css' %}">
-    <script src="{% static 'js/usuario/menu.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/usuario/aviso.css' %}">
     <script src="{% static 'js/usuario/login.js' %}"></script>
+    <script src="{% static 'js/usuario/aviso.js' %}"></script>
 </head>
 <body>
     <main class="login-container">
@@ -17,20 +18,27 @@
         </div>
 
         <div class="login-box">
-            <h1>Bem-vindo (a) ao Habitus!</h1>
+            <h1>Bem-vindo(a) ao Habitus!</h1>
             <p>Entre ou crie sua conta e comece agora a transformação rumo à sua melhor versão.</p>
-
-            {% if erro %}
-                <div class="error-message" id="error-toast">
-                    <p>{{ erro }}</p>
+            <!--PARTE PARA AVISO, ISSO DEVE SER PADRÃO-->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p>{{ field|title }}: {{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             {% endif %}
-
-            {% if sucesso %}
-                <div class="success-message" id="success-toast">
-                    <p>{{ sucesso }}</p>
-                </div>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             {% endif %}
+            <!--FIM DE AVISO AQUI!!-->
 
             <form method="POST">
                 {% csrf_token %}
@@ -40,7 +48,14 @@
                 <label for="senha">Senha:</label>
                 <div style="position: relative;">
                     <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
-                    <img src="{% static 'icones-site/olho_fechado.png' %}" id="iconeSenha"  onclick="toggleSenha()" style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                    <img 
+                        src="{% static 'icones-site/olho-fechado.png' %}" 
+                        id="iconeSenha" 
+                        data-aberto="{% static 'icones-site/olho-aberto.png' %}" 
+                        data-fechado="{% static 'icones-site/olho-fechado.png' %}" 
+                        onclick="toggleSenha()" 
+                        style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+
                 </div>
 
                 <a href="#" class="recuperar-senha">Recuperar senha</a>

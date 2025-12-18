@@ -14,24 +14,43 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Pasta onde serão coletados os arquivos estáticos para produção
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Caminho da URL para arquivos estáticos
-STATIC_URL = '/static/'
+
 
 # Armazenamento de arquivos estáticos com WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+FILE_UPLOAD_HANDLERS = [
+    "django.core.files.uploadhandler.TemporaryFileUploadHandler",
+]
+
 
 # Segurança
 SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1'
 
 # ATENÇÃO: Em produção, deixe DEBUG = False
-DEBUG = True
+DEBUG = False
 
 # Domínios permitidos
 ALLOWED_HOSTS = ['localhost','127.0.0.1','habitus-2025.onrender.com','habitus-cnat.vercel.app',]
 
 
-CSRF_TRUSTED_ORIGINS = ['https://localhost:8000', 'http://127.0.0.1:8000','https://habitus-2025.onrender.com','https://habitus-cnat.vercel.app']
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000', 
+    'http://127.0.0.1:8000',
+    'https://localhost:8000',
+    'https://127.0.0.1:8000',
+    'https://habitus-2025.onrender.com',
+    'https://habitus-cnat.vercel.app'
+]
 
+# Configurações de CSRF e Sessão
+CSRF_COOKIE_SECURE = False  # True apenas em produção com HTTPS
+CSRF_COOKIE_HTTPONLY = False  # Permite JavaScript acessar o cookie se necessário
+CSRF_COOKIE_SAMESITE = 'Lax'  # Permite cookies em requisições do mesmo site
+CSRF_COOKIE_DOMAIN = None  # Não restringir domínio
+SESSION_COOKIE_SECURE = False  # True apenas em produção com HTTPS
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_USE_SESSIONS = False  # Usa cookies em vez de sessões para CSRF token
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'  # View padrão de erro CSRF
 
 # Aplicativos instalados
 INSTALLED_APPS = [
@@ -54,6 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # precisa estar DEPOIS do SessionMiddleware
+
 ]
 
 ROOT_URLCONF = 'devadmin.urls'
@@ -103,6 +124,15 @@ AUTH_PASSWORD_VALIDATORS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+LOGIN_REDIRECT_URL = '/feed/'
+LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_URL = '/'
+
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Internacionalização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
@@ -111,3 +141,6 @@ USE_TZ = True
 
 # Tipo padrão para campos de chave primária
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+

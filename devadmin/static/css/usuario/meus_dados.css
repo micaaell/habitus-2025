@@ -93,6 +93,8 @@ menu div a {
     z-index: 999;
     padding: 2em;
     color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .fechar{
     display: flex;
@@ -202,4 +204,22 @@ p img{
 .menu-icon img{
     width:30px;
     cursor: pointer;
+}
+
+.btn-editar-dados {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.botao-editar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 340px;
+    background-color: #C5F022;
+    color: #000;
+    border-radius: 8px;
+    text-decoration: none;
 }

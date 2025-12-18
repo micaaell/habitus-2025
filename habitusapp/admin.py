@@ -9,5 +9,7 @@ admin.site.register(Admin)
 admin.site.register(Noticia)
 admin.site.register(TreinoExercicio)
 admin.site.register(Notificacao)
+admin.site.register(Progresso)
+admin.site.register(SolicitacaoDeTreino)
 
 # Register your models here.

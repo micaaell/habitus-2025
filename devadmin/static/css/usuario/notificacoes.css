@@ -20,6 +20,7 @@ header{
     left: 0;
     right: 0;
     height: 45px;
+    z-index: 999;
 }
 .logo-h {
     position: absolute;
@@ -146,6 +147,8 @@ h3 {
     z-index: 999;
     padding: 2em;
     color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .fechar{
     display: flex;
@@ -222,33 +225,121 @@ li{
 }
 
 
+.data-container {
+    display: flex;
+    gap: 1rem;
+}
+.notificacao{
+    margin-top: 30px;
+    width: 340px;
 
-        .data-container {
-      display: flex;
-      gap: 1rem;
-    }
+}
 
-    .btn-data {
-      background-color: #4c5563;
-      color: white;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      cursor: pointer;
-      font-size: 1rem;
-      position: relative;
-    }
+.nome-data{
+    margin: 0;
+    background-color: #7689A9;
+    height: 40px;
+    width: 340px;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+strong{
+    color: white;
+    margin-right: 15px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: normal;
+    font-style: normal;
+}
+.conteudo{
+    background-color: #1E1C37;
+    height: 60px;
+    width: 340px;
+    border-radius: 0px 0px 10px 10px;
+    display: grid;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.bolinha-verde {
+    width: 10px;
+    height: 10px;
+    background: #C5F022;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px;
+}
 
-    .btn-data i {
-      color: #c8ff00;
-    }
+.abas-notificacoes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
 
-    input[type="date"] {
-      position: absolute;
-      top: -1000px; /* Move o input para fora da tela */
-      left: -1000px;
-      opacity: 0;
-    }
+.abas-notificacoes .aba {
+    padding: 8px 15px;
+    background: #ddd;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.abas-notificacoes .aba.ativa {
+    background: #2ecc71;
+    color: #fff;
+}
+
+
+.conteudo p {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+.notificacao p{
+    color: white;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 15px;
+}
+
+/* Caixa visual */
+.custom-date {
+    width: 165px;
+    height: 45px;
+    background-color: #3e475b;
+    color: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+#label-fim{
+    font-size: 12px;
+}
+#label-inicio{
+    font-size: 12px;
+}
+/* Ícone FontAwesome */
+.custom-date i {
+    color: #c1f538;
+}
+
+/* Ícone de calendário clicável */
+.custom-date img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* Input invisível, mas funcional */
+.custom-date input[type="date"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    pointer-events: none; /* desativa clique direto */
+}

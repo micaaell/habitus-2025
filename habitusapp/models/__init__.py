@@ -6,3 +6,5 @@ from .Admin import Admin
 from .Noticia import Noticia
 from .TreinoExercicio import TreinoExercicio
 from .Notificacao import Notificacao
+from .Progresso import Progresso
+from .SolicitacaoDeTreino import SolicitacaoDeTreino

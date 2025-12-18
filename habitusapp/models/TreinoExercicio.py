@@ -9,6 +9,7 @@ class TreinoExercicio(models.Model):
     repeticoes = models.PositiveIntegerField(default=0)
     carga = models.CharField(max_length=20, blank=True, null=True)
     observacao = models.TextField(blank=True, null=True)
+    concluido = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.exercicio.nome} em {self.treino.nome}"

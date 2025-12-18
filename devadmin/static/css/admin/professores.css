@@ -192,6 +192,8 @@ h3 {
     z-index: 999;
     padding: 2em;
     color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .fechar{
     display: flex;
@@ -325,11 +327,13 @@ input::placeholder{
     align-items: center;
     background-color: #1E1C37;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .professor > div{
     color: #fff;
-    margin: 0px 30px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    width: 170px;
 }
 
 .professor > div p{
@@ -344,6 +348,7 @@ input::placeholder{
 .professor button{
     width: 50px;
     height: 50px;
+    margin-left: auto;
     margin: 0px 0px 0px 0px;
 }
 
@@ -352,5 +357,40 @@ input::placeholder{
     width: 90px;
     border-radius: 50%;
     object-fit: cover;
+    margin-left: 10px;
 }
 
+.editar-usuario {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+    padding: 8px;
+}
+
+.editar-usuario img {
+    margin: 0;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    width: 30px;
+    height: 30px;
+}
+
+.sem_prof{
+    color:#FFF;
+}
+
+.btn-add-prof img{
+    margin-right: 5px;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+}
+
+.container input[name="busca"] {
+    padding: 0 20px; /* Adiciona padding interno */
+    box-sizing: border-box; /* Importante para o padding não aumentar a largura total */
+}
+
+.container input[name="busca"]::placeholder {
+    color: #7689A9;
+    font-size: 16px;
+}

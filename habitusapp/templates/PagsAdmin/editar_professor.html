@@ -11,6 +11,44 @@
     <script src="{% static 'js/usuario/menu.js' %}"></script>
 </head>
 <body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cpfInput = document.getElementById("id_cpf");
+            const telefoneInput = document.getElementById("id_telefone");
+
+            // Formatação CPF: xxx.xxx.xxx-xx
+            if (cpfInput) {
+                cpfInput.addEventListener("input", function (e) {
+                    let value = cpfInput.value.replace(/\D/g, ''); // remove tudo que não é número
+                    if (value.length > 11) value = value.slice(0, 11);
+                    value = value.replace(/(\d{3})(\d)/, "$1.$2");
+                    value = value.replace(/(\d{3})(\d)/, "$1.$2");
+                    value = value.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                    cpfInput.value = value;
+                });
+            }
+
+            // Formatação Telefone: (DDD) 9xxxx-xxxx
+            if (telefoneInput) {
+                telefoneInput.addEventListener("input", function (e) {
+                    let value = telefoneInput.value.replace(/\D/g, ''); // remove tudo que não é número
+                    if (value.length > 11) value = value.slice(0, 11);
+
+                    if (value.length <= 10) {
+                        // formato antigo: (xx) xxxx-xxxx
+                        value = value.replace(/(\d{2})(\d)/, "($1) $2");
+                        value = value.replace(/(\d{4})(\d)/, "$1-$2");
+                    } else {
+                        // formato novo: (xx) 9xxxx-xxxx
+                        value = value.replace(/(\d{2})(\d)/, "($1) $2");
+                        value = value.replace(/(\d{5})(\d)/, "$1-$2");
+                    }
+                    telefoneInput.value = value;
+                });
+            }
+        });
+    </script>
     <header>
         <div class="seta-voltar">
             <a href="javascript:history.back()">
@@ -36,18 +74,18 @@
                 <ul>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                        <li><a href="{% url 'notificacoes' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'historico' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'solicitar_novo_treino' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'configuracoes' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <!--<li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>-->
+                        <li><a href="{% url 'reportar_erro' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                        <li><a href="{% url 'desenvolvedores' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'sobre_habitus' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
                     </div>
                 </ul>
             </nav>
@@ -62,22 +100,22 @@
                 <ul>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                        <li><a href="{% url 'notificacoes' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'historico' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'solicitar_novo_treino' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a></li>
+                        <li><a href="{% url 'gerenciar_alunos' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a></li>
                         <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'configuracoes' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <!--<li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliar</a></li>-->
+                        <li><a href="{% url 'reportar_erro' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                        <li><a href="{% url 'desenvolvedores' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'sobre_habitus' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
                     </div>
                 </ul>
             </nav>
@@ -92,23 +130,24 @@
                 <ul>
                     <div>
                         <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/ultimas-noticias.png' %}" alt="">Últimas notícias</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
+                        <li><a href="{% url 'notificacoes' %}"><img src="{% static 'icones-site/notificacoes.png' %}" alt="">Notificações</a></li>
+                        <li><a href="{% url 'historico' %}"><img src="{% static 'icones-site/historico.png' %}" alt="">Histórico</a></li>
+                        <li><a href="{% url 'solicitar_novo_treino' %}"><img src="{% static 'icones-site/solicitar-treino.png' %}" alt="">Solicitar novo treino</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-exercicios.png' %}" alt="">Exercícios</a></li>
+                        <li><a href="{% url 'gerenciar_alunos' %}"><img src="{% static 'icones-site/icone-alunos.png' %}" alt="">Alunos</a>
+                        <li><a href="{% url 'exercicios' %}"><img src="{% static 'icones-site/icone-exercicios.png' %}" alt="">Exercícios</a></li>
                         <li><a href="{% url 'gerenciar_noticias' %}"><img src="{% static 'icones-site/icone-noticias.png' %}" alt="">Notícias</a></li>
                         <li><a href="{% url 'professores' %}"><img src="{% static 'icones-site/icone-professores.png' %}" alt="">Professores</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
+                        <li><a href="{% url 'configuracoes' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
+                        <!--<li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>-->
+                        <li><a href="{% url 'reportar_erro' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                     </div>
                     <div>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
-                        <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
+                        <li><a href="{% url 'desenvolvedores' %}"><img src="{% static 'icones-site/desenvolvedores.png' %}" alt="">Desenvolvedores</a></li>
+                        <li><a href="{% url 'sobre_habitus' %}"><img src="{% static 'icones-site/sobre.png' %}" alt="">Sobre o Habitus</a></li>
                     </div>
                 </ul>
             </nav>
@@ -132,52 +171,24 @@
             {% csrf_token %}
             
             <div class="info">
-                <label for="id_nome">Nome:</label>
+                <label for="{{ form.nome.id_for_label }}">Nome:</label>
                 {{ form.nome }}
             </div>
-
-            <div class="linha">
-
-                <div class="info">
-                    <label for="id_username">Usuário:</label>
-                    <input type="text" name="username" id="id_username" 
-                    value="{{ form.username.value }}" class="form-control {% if form.username.errors %}is-invalid{% endif %}">
-                    {% if form.username.errors %}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                {{ error }}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="info">
-                    <label for="id_telefone">Telefone:</label>
-                    {{ form.telefone }}
-                </div>
-
-            </div>
-
             <div class="info">
-                <label for="id_email">Email:</label>
-                <input type="email" name="email" id="id_email" 
-                value="{{ form.email.value }}" class="form-control {% if form.email.errors %}is-invalid{% endif %}">
-                {% if form.email.errors %}
-                    <div class="invalid-feedback">
-                        {% for error in form.email.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                {% endif %}
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+            </div>
+            <div class="info">
+                <label for="{{ form.telefone.id_for_label }}">Telefone:</label>
+                {{ form.telefone }}
+            </div>
+            <div class="info">
+                <label for="{{ form.email.id_for_label }}">E-mail:</label>
+                {{ form.email }}
             </div>
 
-            
-            <div class="info">
-                <label>Senha:</label>
-                <input placeholder="Aqui estará a senha">
-            </div>
             <div class="botoes">
-                <a href="{% url 'professor' professor.pk %}"><button class="cancel">Cancelar</button></a>
+                <a href="{% url 'professor' professor.pk %}"><button type="button" class="cancel">Cancelar</button></a>
                 <button type="submit" class="save">Salvar</button>
             </div>
         </form>
@@ -187,7 +198,7 @@
     <menu>
         <div>
             <a href="{% url 'feed' %}">
-                <img src="{% static 'icones-site/feed-icon-verde.png' %}" alt="Logo feed">
+                <img src="{% static 'icones-site/feed-icon-preta.png' %}" alt="Logo feed">
                 <h3>feed</h3>
             </a>
         </div>

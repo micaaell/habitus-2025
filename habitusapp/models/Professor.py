@@ -5,18 +5,9 @@ from django.contrib.auth.models import User
 class Professor(models.Model):
     class Tipo_Trabalho(models.TextChoices):
         PROFESSOR = 'Professor(a)', 'Professor(a)'
-    class NivelChoices(models.TextChoices):
-        INICIANTE = 'Iniciante', 'Iniciante'
-        INTERMEDIARIO = 'Intermediário', 'Intermediário'
-        AVANCADO = 'Avançado', 'Avançado'
-    class ObjetivoChoices(models.TextChoices):
-        GANHODEMASSA = 'Ganho de Massa', 'Ganho de Massa'
-        PERDADEPESO = 'Perda de peso', 'Perda de peso'
-        SAUDE = 'Saúde', 'Saúde'
-        OUTRO = 'Outro', 'Outro'
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    matricula = models.CharField(max_length=20, primary_key=True, editable=False, unique=True)
+    matricula = models.CharField(max_length=20, blank=True, null=True)
     foto_perfil = models.ImageField(null=True, blank=True, upload_to='foto-perfil-professor/')
     nome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=14, unique=True, editable=False)
@@ -24,6 +15,7 @@ class Professor(models.Model):
     email = models.EmailField(unique=True)
     telefone = models.CharField(max_length=15, blank=True, null=True)
     data_criacao = models.DateTimeField(auto_now_add=True)
+    ativo = models.BooleanField(default=True)
     
     inst_formacao = models.CharField(max_length=100, blank=True, null=True)
     data_admissao = models.DateField()
@@ -32,47 +24,6 @@ class Professor(models.Model):
         choices=Tipo_Trabalho.choices,
         default=Tipo_Trabalho.PROFESSOR
     )
-    
-    peso = models.FloatField(blank=True, null=True)
-    altura = models.FloatField(blank=True, null=True)
-    nivel = models.CharField(
-        max_length=20,
-        choices=NivelChoices.choices,
-        blank=True, null=True
-    )
-    objetivo = models.CharField(
-        max_length=20,
-        choices=ObjetivoChoices.choices,
-        blank=True, null=True
-    )
-
-    #Medição das cincunfêrencias
-    cintura = models.FloatField(blank=True, null=True)
-    abdomen = models.FloatField(blank=True, null=True)
-    torax = models.FloatField(blank=True, null=True)
-    quadril = models.FloatField(blank=True, null=True)
-    coxa_direita = models.FloatField(blank=True, null=True)
-    coxa_esquerda = models.FloatField(blank=True, null=True)
-    panturrilha_direita = models.FloatField(blank=True, null=True)
-    panturrilha_esquerda = models.FloatField(blank=True, null=True)
-    braco_direito = models.FloatField(blank=True, null=True)
-    braco_esquerdo = models.FloatField(blank=True, null=True)
-
-    #Medições das dobras cutâneas
-    tricipital = models.FloatField(blank=True, null=True)
-    subescapular = models.FloatField(blank=True, null=True)
-    axilar_media = models.FloatField(blank=True, null=True)
-    suprailiaca = models.FloatField(blank=True, null=True)
-    abdominal = models.FloatField(blank=True, null=True)
-    coxa = models.FloatField(blank=True, null=True)
-    panturrilha= models.FloatField(blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.matricula:
-            ano = self.data_admissao.year
-            ultimo_professor_ano = Professor.objects.filter(matricula__startswith=str(ano)).count() + 1
-            self.matricula = f"{ano}{str(ultimo_professor_ano).zfill(2)}"
-        super().save(*args, **kwargs)
 
     @property
     def idade(self):
@@ -82,3 +33,7 @@ class Professor(models.Model):
 
     def __str__(self):
         return f"{self.nome} ({self.matricula}) ({self.idade})"
+
+    @property
+    def pode_acessar(self):
+        return self.ativo and self.user.is_active

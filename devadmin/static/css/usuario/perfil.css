@@ -20,6 +20,7 @@ header{
     left: 0;
     right: 0;
     height: 45px;
+    z-index: 999;
 }
 .logo-h {
     position: absolute;
@@ -125,6 +126,8 @@ menu div a {
     z-index: 999;
     padding: 2em;
     color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .fechar{
     display: flex;
@@ -194,10 +197,8 @@ main{
     /*max-width: 375px;
     padding: 0 16px;*/
 }
-.editar-foto img{
-    width: 122px;
+.editar-foto{
     flex-shrink: 0;
-    height: 122px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -261,4 +262,77 @@ span{
 
 .seta-voltar {
     margin-left: 0;
+}
+
+.foto-perfil-wrapper {
+  position: relative;  /* container relativo */
+  display: inline-block;
+}
+
+.foto-perfil {
+  width: 122px;   /* ajuste conforme necessário */
+  height: 122px;
+  border-radius: 50%; /* mantém redondo */
+  object-fit: cover;
+  /*display: block;*/
+}
+
+.icone-editar {
+  position: absolute;
+  bottom: 5px;
+  left: 86px;
+  right: 10px;    /* distância da lateral */
+  width: 35px;    /* tamanho do ícone */
+  height: 35px;
+  cursor: pointer;
+}
+
+button#salvar-foto-btn {
+    text-decoration: none;
+    color: black;
+    font-weight: medium;
+    background-color: #C5F022;
+    border: none;
+    border-radius: 10px;
+    width: 165px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 0;
+}
+button#remover-foto-btn{
+    text-decoration: none;
+    color: white;
+    font-weight: medium;
+    background-color: #4E5A6E;
+    border: none;
+    border-radius: 10px;
+    width: 165px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 0;
+}
+#foto-padrao{
+    width: 340px;
+    height: 40px;
+    border-radius: 10px;
+    background: none;
+    border: 1px solid #C5F022;
+    color:#C5F022;
+    
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
 }

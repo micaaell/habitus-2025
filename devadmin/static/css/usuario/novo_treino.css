@@ -171,6 +171,8 @@ menu div a {
     z-index: 999;
     padding: 2em;
     color: white;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .fechar{
     display: flex;
@@ -259,7 +261,7 @@ ul > div:nth-of-type(-n+3) {
 
 .card-exercicio {
     background-color: #181834;
-    border-radius: 12px;
+    border-radius: 0px 0px 12px 12px;
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -292,22 +294,24 @@ label{
     font-size: 15px;
 }
 input{
-    font-size:10px;
-    margin-bottom: 10px;
+    font-size:12px;
     border-radius: 5px;
-    height: 30px;
+    height: 40px;
     background-color: #3B3E52;
     border:none ;
-    margin: 0px 0px 15px 0px;
+    margin: 0px 0px 10px 0px;
+    padding: 0;
 }
 
 select:invalid {
-  color: #464F63; /* cor do texto quando nada foi selecionado */
+  color: #8E9EB8; /* cor do texto quando nada foi selecionado */
 }
 .nome{
     display: flex;
     flex-direction: column;
-
+}
+.nome input{
+    padding-left: 5px;
 }
 .quant-nivel{
     display: flex;
@@ -319,8 +323,8 @@ div#quant-exercicios{
     width: 165px;
     background-color: #7689A9;
     border-radius: 5px;
-    height: 30px;
-    margin-bottom: 15px;
+    height: 40px;
+    margin-bottom: 10px;
 }
 .quant-exercicios{
     margin-right: 10px;
@@ -336,8 +340,8 @@ div#quant-exercicios p{
     flex-direction: column;
 }
 select{
-    font-size:10px;
-    height: 30px;
+    font-size:12px;
+    height: 40px;
     width: 165px;
     background-color: #3B3E52;
     border-radius: 5px;
@@ -351,15 +355,16 @@ select{
     margin-right: 10px;
 }
 input[type="date"]{
-    width: 165px;
-    height: 30px;
+    width: 155px;
+    height: 40px;
     background-color: #3B3E52;
     border-radius: 5px;
     border: none;
     color: white;
+    padding: 0 5px 0 5px;
 }
 input[type="text"]::placeholder {
-    color: #464F63;
+    color: #8E9EB8;
 }
 input[type="text"] {
     color: white;
@@ -368,11 +373,14 @@ input[type="text"] {
     display: flex;
     flex-direction: column;
 }
+.busca-exercicios input {
+    padding-left: 5px;
+}
 .botoes{
     display: flex;
     justify-content: space-around;
     width: 340px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 button{
     background-color: #C5F022;
@@ -433,10 +441,10 @@ label.grupo-muscular{
     font-size: 10px;
 }
 
-.inputs {
+/*.inputs {
     width: 100%;
     display: grid;
-}
+}*/
 input.checkbox-exercicio {
     margin: 0;
     margin-left: 10px;
@@ -463,9 +471,11 @@ input.checkbox-exercicio {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #070A22;
-    width: 200px;
+    color: #C5F022;
+    width: 312px;
     border-radius: 50px;
+    border: 1px solid #C5F022;
+    background: none;
 }
 .btn-adicionar img {
     width: 15px;
@@ -474,6 +484,7 @@ input.checkbox-exercicio {
 .inputs-detalhes input {
     width: 92px;
     margin-bottom: 10px;
+    color: white;
 }
 .inputs-detalhes {
     display: flex;
@@ -494,4 +505,34 @@ input.checkbox-exercicio {
     color: white;
     font-weight: 500;
     margin-bottom:1px;
+}
+
+.ou-linha{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin: 20px 0;
+}
+
+.ou-linha::before,
+.ou-linha::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid white;
+    margin: 0 10px;
+    width: 200px;
+}
+.ou-linha h1{
+    font-size: 15px;
+}
+
+.filtros select {
+    background-color: #4E5A6E;
+    width: 340px;
+    border-radius: 100px;
+    padding-left: 5px;
+}
+div#resultados-exercicios {
+    margin-top: 10px;
 }
