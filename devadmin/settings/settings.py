@@ -14,6 +14,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Pasta onde serão coletados os arquivos estáticos para produção
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATIC_URL = '/static/'
 
 
 # Armazenamento de arquivos estáticos com WhiteNoise
@@ -27,7 +28,7 @@ FILE_UPLOAD_HANDLERS = [
 SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1'
 
 # ATENÇÃO: Em produção, deixe DEBUG = False
-DEBUG = False
+DEBUG = True
 
 # Domínios permitidos
 ALLOWED_HOSTS = ['localhost','127.0.0.1','habitus-2025.onrender.com','habitus-cnat.vercel.app',]
