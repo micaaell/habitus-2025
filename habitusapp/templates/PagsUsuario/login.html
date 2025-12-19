@@ -58,7 +58,7 @@
 
                 </div>
 
-                <a href="#" class="recuperar-senha">Recuperar senha</a>
+                <a href="{% url 'recuperar_senha' %}" class="recuperar-senha">Recuperar senha</a>
 
                 <button type="submit" class="btn-principal">Entrar</button>
                 <a href="{% url 'criar_conta' %}" class="btn-secundario">Criar Conta</a>
@@ -67,7 +67,7 @@
                     <span>Ou</span>
                 </div>
 
-                <a href="{% url 'feed' %}" class="btn-suap">
+                <a href="{% url 'entrar_pelo_suap' %}" class="btn-suap">
                     Entrar com o <img src="{% static 'icones-site/suap-logo.png' %}" alt="Logo SUAP">
                 </a>
             </form>

@@ -668,6 +668,10 @@ def finalizar_treino(request, treino_id):
         progresso_obj.ultimo_treino_id = treino.id
         progresso_obj.save()
         messages.success(request, "Treino finalizado com sucesso!")
+        Notificacao.objects.create(
+            usuario=request.user,
+            conteudo="Você finalizou seu treino!"
+            )
 
         # --- registra data + info do treino no JSONField ---
         hoje_str = timezone.now().date().isoformat()  # "YYYY-MM-DD"
@@ -958,6 +962,15 @@ def reportar_erro(request):
 
 #@csrf_exempt
 #@csrf_protect
+def recuperar_senha(request):
+    return render(request, 'PagsUsuario/recuperar_senha.html')
+#@csrf_exempt
+#@csrf_protect
+def entrar_pelo_suap(request):
+    return render(request, 'PagsUsuario/entrar_pelo_suap.html')
+
+#@csrf_exempt
+#@csrf_protect
 @login_required
 def meu_progresso(request):
     progresso_total = calcular_progresso(request.user)
@@ -1066,6 +1079,10 @@ def adicionar_meu_progresso(request):
             novo_progresso.usuario = request.user
             novo_progresso.save()
             messages.success(request, 'Progresso adicionado com sucesso!')
+            Notificacao.objects.create(
+            usuario=request.user,
+            conteudo="Você adicionou um novo progresso!"
+            )
             return redirect('meu_progresso')
         else:
             messages.error(request, 'Por favor, corrija os erros no formulário.')
@@ -1091,6 +1108,10 @@ def editar_meu_progresso(request, progresso_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Progresso atualizado com sucesso!')
+            Notificacao.objects.create(
+            usuario=request.user,
+            conteudo="Você editou seu progresso!"
+            )
             return redirect('meu_progresso')
         else:
             messages.error(request, 'Por favor, corrija os erros no formulário.')
