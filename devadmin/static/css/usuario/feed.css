@@ -105,6 +105,7 @@ h1 {
 }
 .treino{
     margin-top: 28px;
+    margin-bottom: 72px;
     width: 340px;
     height: 203px;
     flex-shrink: 0;
@@ -261,8 +262,8 @@ main{
     color: white;
     font-size: 1.2em;
 }
-section.noticias{
-    margin-top: 50px;
+h1#noticias {
+    padding: 0;
 }
 .noticia{
     background-color: #1E1C37;
@@ -379,32 +380,6 @@ p.direitos_videos {
     width: 340px;
     height: 190px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Fundo do modal */
 .modal {
@@ -576,3 +551,11 @@ h4.text-lg.mt-4 {
     align-items: center;
     gap: 2px;
 }
+.ou-linha{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #797979;
+    margin: 32px 0px 32px 0px;
+}
+
