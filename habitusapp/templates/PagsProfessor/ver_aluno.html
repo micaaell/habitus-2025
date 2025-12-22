@@ -173,7 +173,7 @@
                         </div>
                         <div>
                             <li><a href="{% url 'configuracoes' %}"><img src="{% static 'icones-site/configuracoes.png' %}" alt="">Configurações</a></li>
-                            <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>
+                            <!--<li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/icone-avaliar.png' %}" alt="">Avaliações</a></li>-->
                             <li><a href="{% url 'feed' %}"><img src="{% static 'icones-site/reportar-erro.png' %}" alt="">Reportar erro</a></li>
                         </div>
                         <div>
@@ -256,27 +256,25 @@
                     <p>E-mail: </p>
                     <p>{{ aluno.user.email }}</p>
                     <p>Senha: </p>
-                    <p> *** </p>
+                    <p> ****** </p>
                 
                 </section> 
                 <!-- Botões de Ação -->
                 <div class="botoes-acao">
                     <a href="{% url 'gerenciar_alunos' %}"><button class="btn btn-secondary">Voltar</button></a>
-
-                    <!-- Botão de Inativar/Reativar (apenas para Admin) -->
-                    {% if user.groups.first.name == "Admin" %}
-                        <form id="status-form" method="post" action="{% url 'inativar_reativar_aluno' aluno.pk %}" style="display: inline;">
-                            {% csrf_token %}
-                            {% if aluno.user.is_active %}
-                                <button type="button" class="btn btn-danger" onclick="confirmarAcao('inativar')">Inativar Aluno</button>
-                            {% else %}
-                                <button type="button" class="btn btn-success" onclick="confirmarAcao('reativar')">Reativar Aluno</button>
-                            {% endif %}
-                        </form>
-                    {% endif %}
-                    
                     <a href="{% url 'editar_aluno' aluno.id %}"><button class="btn btn-warning">Editar Aluno</button></a>
                 </div>
+                <!-- Botão de Inativar/Reativar (apenas para Admin) -->
+                {% if user.groups.first.name == "Admin" %}
+                    <form id="status-form" method="post" action="{% url 'inativar_reativar_aluno' aluno.pk %}" style="display: inline;">
+                        {% csrf_token %}
+                        {% if aluno.user.is_active %}
+                            <button type="button" class="btn btn-danger" onclick="confirmarAcao('inativar')">Inativar Aluno</button>
+                        {% else %}
+                            <button type="button" class="btn btn-success" onclick="confirmarAcao('reativar')">Reativar Aluno</button>
+                        {% endif %}
+                    </form>
+                {% endif %}
                 
             </section>
         </main>

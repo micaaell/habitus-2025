@@ -440,13 +440,14 @@ def buscar_exercicios(request):
         })
     return JsonResponse(data, safe=False)
 
-from django.utils.dateparse import parse_date
-from django.utils.timezone import now
 from datetime import timedelta
+from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.utils.dateparse import parse_date
+from datetime import date
 
 @login_required
 def notificacoes(request):
@@ -462,23 +463,29 @@ def notificacoes(request):
     if di and df:
         notificacoes = notificacoes.filter(data__date__range=[di, df])
 
-    # 🔥 MARCAR COMO LIDAS APENAS AS NOTIFICAÇÕES COM +24H
-    limite = now() - timedelta(hours=24)
-    notificacoes.filter(lida=False, data__lte=limite).update(lida=True)
+    # ✅ REGRA 1 — MARCAR TODAS COMO LIDAS AO ABRIR A PÁGINA
+    Notificacao.objects.filter(
+        usuario=request.user,
+        lida=False
+    ).update(lida=True)
 
-    # Recarregar queryset após update
+    # ✅ REGRA 2 — GARANTIA: +24H TAMBÉM FICA LIDA
+    limite = now() - timedelta(hours=24)
+    Notificacao.objects.filter(
+        usuario=request.user,
+        lida=False,
+        data__lte=limite
+    ).update(lida=True)
+
     notificacoes = notificacoes.order_by("-data")
 
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        html = render_to_string("PagsUsuario/notificacoes.html", {
-            "notificacoes": notificacoes,
-            "data_inicio": data_inicio,
-            "data_fim": data_fim,
-        })
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(html, "html.parser")
-        container_html = str(soup.select_one("#notificacoes-container"))
-        return JsonResponse({"html": container_html})
+        html = render_to_string(
+            "PagsUsuario/partials/notificacoes_lista.html",
+            {"notificacoes": notificacoes},
+            request=request
+        )
+        return JsonResponse({"html": html})
 
     return render(request, "PagsUsuario/notificacoes.html", {
         "notificacoes": notificacoes,

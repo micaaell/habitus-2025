@@ -176,8 +176,12 @@
             <h2>Treinos de {{ aluno.nome }}:</h2>
             {% for treino in treinos_usuario %}
                 <div class="treino-card">
-                    <div class="video-exercicio">
-                        <!-- vídeo ou imagem -->
+                    <div class="video-exercicio">           
+                        {% if treino.exercicio.imagem %}
+                            <img  src="{{ treino.exercicio.imagem.url }}" alt="Sem vídeo" class="imagem-exercicio">
+                        {% else %}
+                            <img src="/static/icones-site/sem-video.png" alt="Sem vídeo" class="imagem-exercicio">
+                        {% endif %}
                     </div>
 
                     <div class="info-treino">

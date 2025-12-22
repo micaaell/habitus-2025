@@ -258,12 +258,9 @@ def atualizar_foto_aluno(request, pk):
 def editar_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
 
-    try:
-        progresso = Progresso.objects.get(usuario=aluno.user)
-        progresso_existe = True
-    except Progresso.DoesNotExist:
-        progresso = None
-        progresso_existe = False
+    progresso = Progresso.objects.filter(usuario=aluno.user).order_by('-id').first()
+    progresso_existe = progresso is not None
+
 
     if request.method == 'POST':
         aluno_form = AlunoEditForm(request.POST, request.FILES, instance=aluno)
