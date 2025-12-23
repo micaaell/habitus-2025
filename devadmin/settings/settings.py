@@ -28,7 +28,9 @@ FILE_UPLOAD_HANDLERS = [
 SECRET_KEY = 'django-insecure-d&fj#(my1kmiq5l@x10gmtm50hj^5qqc$-m_!o)%&tr*tmslb1'
 
 # ATENÇÃO: Em produção, deixe DEBUG = False
-DEBUG = True
+#DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 
 # Domínios permitidos
 ALLOWED_HOSTS = ['localhost','127.0.0.1','habitus-2025.onrender.com','habitus-cnat.vercel.app',]
@@ -104,10 +106,12 @@ ASGI_APPLICATION = 'devadmin.asgi.application'
 # Banco de dados (usando variável DATABASE_URL ou SQLite como fallback)
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=not DEBUG
     )
 }
+
 
 
 # Validação de senha
