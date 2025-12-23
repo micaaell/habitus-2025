@@ -103,8 +103,12 @@ ASGI_APPLICATION = 'devadmin.asgi.application'
 
 # Banco de dados (usando variável DATABASE_URL ou SQLite como fallback)
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
 }
+
 
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
