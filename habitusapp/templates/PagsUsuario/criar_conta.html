@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/usuario/criar_conta.css' %}">
     <link rel="stylesheet" href="{% static 'css/usuario/aviso.css' %}">
     <script src="{% static 'js/usuario/aviso.js' %}"></script>
+    <script src="{% static 'js/usuario/login.js' %}"></script>
 </head>
 <body>
     <script>
@@ -161,7 +162,17 @@
 
                 <!-- Campo: Senha -->
                 <label for="id_password">Senha:</label>
-                <input type="password" name="password" id="id_password" required placeholder="Crie uma senha com no mínimo 8 digítos">
+                <div style="position: relative; width: 335px;">
+                    <input type="password" name="password" id="senha" required placeholder="Crie uma senha com no mínimo 8 digítos">
+                    <img 
+                        src="{% static 'icones-site/olho-fechado.png' %}" 
+                        id="iconeSenha" 
+                        data-aberto="{% static 'icones-site/olho-aberto.png' %}" 
+                        data-fechado="{% static 'icones-site/olho-fechado.png' %}" 
+                        onclick="toggleSenha()" 
+                        style="width: 20px; height: 20px; cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+
+                </div>
                 
                 <!-- Botão de envio -->
                  <div class="botoes">
