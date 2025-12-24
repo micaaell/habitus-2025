@@ -104,13 +104,26 @@ WSGI_APPLICATION = 'devadmin.wsgi.application'
 ASGI_APPLICATION = 'devadmin.asgi.application'
 
 # Banco de dados (usando variável DATABASE_URL ou SQLite como fallback)
+#DATABASES = {
+#    'default': dj_database_url.config(
+#        default=os.getenv('DATABASE_URL'),
+#        conn_max_age=600,
+#        ssl_require=not DEBUG
+#    )
+#}
+from decouple import config
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('bd_habitus'),
+        'USER': config('bd_habitus_user'),
+        'PASSWORD': config('M33IP3RouqqhclqEHhhQ531vgDItBE7Q'),
+        'HOST': config('dpg-d55dice3jp1c739q8ns0-a'),
+        'PORT': config('DB_PORT', default='5432'),
+    }
 }
+
+
 
 
 
