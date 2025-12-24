@@ -116,10 +116,10 @@ ASGI_APPLICATION = 'devadmin.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('bd_habitus'),
-        'USER': config('bd_habitus_user'),
-        'PASSWORD': config('M33IP3RouqqhclqEHhhQ531vgDItBE7Q'),
-        'HOST': config('dpg-d55dice3jp1c739q8ns0-a'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
     }
 }
