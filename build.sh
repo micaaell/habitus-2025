@@ -1,7 +1,20 @@
 #!/usr/bin/env bash
 # build.sh
 
-# Instala dependências e prepara o Django
+set -o errexit  # Sai se algum comando falhar
+
+echo "🔧 Iniciando build no Render..."
+
+# Atualiza pip (importante para evitar erros)
+pip install --upgrade pip
+
+# Instala dependências
 pip install -r requirements.txt
-python manage.py collectstatic --noinput
+
+# Coleta arquivos estáticos (--clear remove arquivos antigos)
+python manage.py collectstatic --noinput --clear
+
+# Aplica migrações do banco de dados
 python manage.py migrate --noinput
+
+echo "✅ Build concluído!"

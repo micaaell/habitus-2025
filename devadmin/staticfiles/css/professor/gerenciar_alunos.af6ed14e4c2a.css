@@ -19,6 +19,7 @@ header{
     left: 0;
     right: 0;
     height: 45px;
+    z-index: 999;
 }
 .seta-voltar {
     margin-left: 0;
