@@ -3,18 +3,21 @@
 
 set -o errexit  # Sai se algum comando falhar
 
-echo "🔧 Iniciando build no Render..."
+echo "🔧 Iniciando build..."
 
-# Atualiza pip (importante para evitar erros)
+# Mostra versão do Python (ajuda no debug)
+python --version
+
+# Atualiza pip
 pip install --upgrade pip
 
 # Instala dependências
 pip install -r requirements.txt
 
-# Coleta arquivos estáticos (--clear remove arquivos antigos)
-python manage.py collectstatic --noinput --clear
-
 # Aplica migrações do banco de dados
 python manage.py migrate --noinput
 
-echo "✅ Build concluído!"
+# Coleta arquivos estáticos
+python manage.py collectstatic --noinput
+
+echo "✅ Build concluído com sucesso!"
